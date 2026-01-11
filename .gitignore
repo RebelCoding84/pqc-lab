@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+
+# Pixi environments (NOT the lockfile)
+.pixi/
+
+# Environment files
+.env
+.env.*
+
+# Testing / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors
+.vscode/
+.idea/

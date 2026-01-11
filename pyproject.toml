@@ -1,0 +1,14 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pqc-lab"
+version = "0.1.0"
+description = "CPU-only reproducible baseline for PQC lab demos"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "AGPL-3.0-or-later" }
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pqc_lab"]
