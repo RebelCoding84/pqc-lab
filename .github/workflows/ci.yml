@@ -18,3 +18,12 @@ jobs:
         run: pixi install
       - name: Run tests
         run: pixi run test
+
+  docker-cpu:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Docker CPU image
+        run: docker build -f docker/Dockerfile.cpu -t pqc-lab:cpu .
+      - name: Run tests in container
+        run: docker run --rm pqc-lab:cpu pixi run test
