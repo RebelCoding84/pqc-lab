@@ -1,0 +1,10 @@
+name: Mock ECDH Baseline
+key_exchange:
+  algorithm: mock_ecdh
+  iterations: 5
+  seed_mode: deterministic
+  seed: 12345
+  failure_injection: false
+metadata:
+  purpose: orchestration-demo
+  deterministic: true

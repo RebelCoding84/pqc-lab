@@ -15,6 +15,7 @@ numpy = "*"
 scipy = "*"
 pytest = "*"
 rich = "*"
+pyyaml = "*"
 
 [tasks]
 # Install the local package (src/ layout) so imports work in tests/CI.

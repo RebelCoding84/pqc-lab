@@ -1,0 +1,10 @@
+name: Mock PQC KEM Baseline
+key_exchange:
+  algorithm: mock_pqc_kem
+  iterations: 5
+  seed_mode: deterministic
+  seed: 424242
+  failure_injection: false
+metadata:
+  purpose: orchestration-demo
+  deterministic: true
