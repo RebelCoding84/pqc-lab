@@ -16,6 +16,7 @@ COPY pixi.toml pixi.lock pyproject.toml README.md LICENSE ./
 COPY src ./src
 COPY examples ./examples
 COPY tests ./tests
+COPY profiles ./profiles
 
 RUN pixi install --locked
 RUN pixi run test
