@@ -1,0 +1,23 @@
+FROM ubuntu:24.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl git bash \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV PIXI_VERSION=0.62.2
+RUN curl -fsSL "https://github.com/prefix-dev/pixi/releases/download/v${PIXI_VERSION}/pixi-x86_64-unknown-linux-musl.tar.gz" \
+  | tar -xz -C /usr/local/bin pixi
+
+WORKDIR /app
+
+COPY pixi.toml pixi.lock pyproject.toml README.md LICENSE ./
+COPY src ./src
+COPY examples ./examples
+COPY tests ./tests
+
+RUN pixi install --locked
+RUN pixi run test
+
+CMD ["pixi", "run", "demo-quantum"]
