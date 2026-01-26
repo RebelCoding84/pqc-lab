@@ -1,0 +1,11 @@
+name: "NIST FIPS 203 Reference Run"
+provider: "liboqs"
+key_exchange:
+  algorithm: "ML-KEM-768"
+  iterations: 50
+  seed_mode: "deterministic"
+  seed: 1
+  failure_injection: false
+metadata:
+  standard: "NIST FIPS 203"
+  note: "ML-KEM (formerly CRYSTALS-Kyber)"

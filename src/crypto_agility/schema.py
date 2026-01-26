@@ -22,6 +22,7 @@ class KeyExchangeConfig:
 @dataclass(frozen=True)
 class Profile:
     name: str
+    provider: str | None
     key_exchange: KeyExchangeConfig
     metadata: dict[str, str | int | bool]
 
@@ -40,22 +41,34 @@ def _load_yaml(path: str | Path) -> Mapping[str, Any]:
 
 
 def _parse_profile(data: Mapping[str, Any]) -> Profile:
-    _require_keys(data, {"name", "key_exchange", "metadata"}, {"name", "key_exchange"}, "profile")
+    _require_keys(
+        data,
+        {"name", "key_exchange", "metadata", "provider"},
+        {"name", "key_exchange"},
+        "profile",
+    )
     name = data["name"]
     if not isinstance(name, str) or not name.strip():
         raise ValueError("Profile name must be a non-empty string.")
 
+    provider = data.get("provider")
+    if provider is not None:
+        if not isinstance(provider, str) or not provider.strip():
+            raise ValueError("provider must be a non-empty string if set.")
+        if provider != "liboqs":
+            raise ValueError("provider must be 'liboqs' if set.")
+
     key_exchange_raw = data["key_exchange"]
     if not isinstance(key_exchange_raw, Mapping):
         raise ValueError("key_exchange must be a mapping.")
-    key_exchange = _parse_key_exchange(key_exchange_raw)
+    key_exchange = _parse_key_exchange(key_exchange_raw, provider)
 
     metadata_raw = data.get("metadata", {})
     metadata = _parse_metadata(metadata_raw)
-    return Profile(name=name, key_exchange=key_exchange, metadata=metadata)
+    return Profile(name=name, provider=provider, key_exchange=key_exchange, metadata=metadata)
 
 
-def _parse_key_exchange(data: Mapping[str, Any]) -> KeyExchangeConfig:
+def _parse_key_exchange(data: Mapping[str, Any], provider: str | None) -> KeyExchangeConfig:
     _require_keys(
         data,
         {"algorithm", "iterations", "seed_mode", "seed", "failure_injection"},
@@ -63,8 +76,12 @@ def _parse_key_exchange(data: Mapping[str, Any]) -> KeyExchangeConfig:
         "key_exchange",
     )
     algorithm = data["algorithm"]
-    if algorithm not in ALLOWED_ALGORITHMS:
-        raise ValueError(f"algorithm must be one of {sorted(ALLOWED_ALGORITHMS)}.")
+    if provider == "liboqs":
+        if not isinstance(algorithm, str) or not algorithm.strip():
+            raise ValueError("algorithm must be a non-empty string.")
+    else:
+        if algorithm not in ALLOWED_ALGORITHMS:
+            raise ValueError(f"algorithm must be one of {sorted(ALLOWED_ALGORITHMS)}.")
 
     iterations = data["iterations"]
     if not isinstance(iterations, int) or not (1 <= iterations <= 10_000):

@@ -16,6 +16,31 @@ def run_profile(profile: Profile) -> dict[str, Any]:
     failure_count = 0
     rng = random.Random(profile.key_exchange.seed)
 
+    if profile.provider == "liboqs":
+        from .backend import run_kem_exchange
+
+        backend_result = run_kem_exchange(
+            {
+                "provider": "liboqs",
+                "algorithm": profile.key_exchange.algorithm,
+                "iterations": profile.key_exchange.iterations,
+            }
+        )
+        elapsed_ms = (time.perf_counter() - start) * 1000.0
+        return {
+            "profile_name": profile.name,
+            "algorithm": profile.key_exchange.algorithm,
+            "iterations": profile.key_exchange.iterations,
+            "deterministic": profile.key_exchange.seed_mode == "deterministic",
+            "success_count": profile.key_exchange.iterations,
+            "failure_count": 0,
+            "elapsed_ms": elapsed_ms,
+            "metadata": dict(profile.metadata),
+            "provider": "liboqs",
+            "mechanism": backend_result["mechanism"],
+            "shared_secret_length": backend_result["shared_secret_length"],
+        }
+
     for index in range(profile.key_exchange.iterations):
         _derive_secret(profile.key_exchange.seed, index, profile.key_exchange.algorithm)
         if profile.key_exchange.failure_injection and rng.random() < 0.1:
