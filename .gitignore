@@ -21,3 +21,6 @@ htmlcov/
 # Editors
 .vscode/
 .idea/
+
+# Local run artifacts (do not commit)
+reports/

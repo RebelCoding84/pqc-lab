@@ -42,3 +42,36 @@ If you change dependencies (for example adding PyYAML), run `pixi install` to re
 ## Extension Strategy
 
 The baseline is CPU-only and intentionally minimal. Additional capabilities (PQC provider libraries, GPU acceleration, or containerized deployments) can be added later via Pixi profiles without changing the core baseline.
+
+## PQC container
+
+Use the PQC container for opt-in runs that include liboqs / ML-KEM support.
+
+## Reproducibility check (ML-KEM / liboqs)
+
+Run the ML-KEM profile twice inside the PQC container, save JSON outputs to a mounted reports volume, and compare normalized results with `elapsed_ms` removed.
+
+```bash
+mkdir -p reports
+
+docker build -f docker/Dockerfile.pqc -t pqc-lab:pqc .
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_mlkem.yaml','--out','/app/reports/run1.json']))"
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_mlkem.yaml','--out','/app/reports/run2.json']))"
+
+diff -u \
+  <(jq 'del(.elapsed_ms)' reports/run1.json) \
+  <(jq 'del(.elapsed_ms)' reports/run2.json) \
+  || true
+
+jq 'del(.elapsed_ms)' reports/run1.json > /tmp/r1.json
+jq 'del(.elapsed_ms)' reports/run2.json > /tmp/r2.json
+sha256sum /tmp/r1.json /tmp/r2.json
+```
