@@ -27,3 +27,12 @@ jobs:
         run: docker build -f docker/Dockerfile.cpu -t pqc-lab:cpu .
       - name: Run tests in container
         run: docker run --rm pqc-lab:cpu pixi run test
+
+  docker-pqc:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build PQC container
+        run: docker build -f docker/Dockerfile.pqc -t pqc-lab:pqc .
+      - name: Smoke import oqs
+        run: docker run --rm pqc-lab:pqc python -c "import oqs; print('oqs import OK')"
