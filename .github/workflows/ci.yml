@@ -35,4 +35,4 @@ jobs:
       - name: Build PQC container
         run: docker build -f docker/Dockerfile.pqc -t pqc-lab:pqc .
       - name: Smoke import oqs
-        run: docker run --rm pqc-lab:pqc python -c "import oqs; print('oqs import OK')"
+        run: docker run --rm pqc-lab:pqc pixi run python -c "import oqs; print('oqs import OK')"
