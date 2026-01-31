@@ -1,0 +1,11 @@
+name: "Classic McEliece Reference Run"
+provider: "liboqs"
+key_exchange:
+  algorithm: "Classic-McEliece-460896"
+  iterations: 50
+  seed_mode: "deterministic"
+  seed: 1
+  failure_injection: false
+metadata:
+  standard: "NIST PQC finalist"
+  note: "Classic McEliece (code-based KEM) via liboqs"

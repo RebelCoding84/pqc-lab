@@ -75,3 +75,48 @@ jq 'del(.elapsed_ms)' reports/run1.json > /tmp/r1.json
 jq 'del(.elapsed_ms)' reports/run2.json > /tmp/r2.json
 sha256sum /tmp/r1.json /tmp/r2.json
 ```
+
+## Reproducibility check (Classic McEliece / liboqs)
+
+Run the Classic McEliece profile twice inside the PQC container, save JSON outputs to a mounted reports volume, and compare normalized results with elapsed_ms removed.
+
+> Note: The PQC container image is immutable. To use a host-side profile, mount `profiles/` read-only into `/app/profiles`.
+
+```bash
+cat > profiles/real_mceliece.yaml <<'EOF'
+name: "Classic McEliece Reference Run"
+provider: "liboqs"
+key_exchange:
+  algorithm: "Classic-McEliece-460896"
+  iterations: 50
+  seed_mode: "deterministic"
+  seed: 1
+  failure_injection: false
+metadata:
+  standard: "NIST PQC finalist"
+  note: "Classic McEliece (code-based KEM) via liboqs"
+EOF
+
+mkdir -p reports
+
+docker run --rm \
+  -v "$PWD/profiles:/app/profiles:ro" \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','/app/profiles/real_mceliece.yaml','--out','/app/reports/mceliece_run1.json']))"
+
+docker run --rm \
+  -v "$PWD/profiles:/app/profiles:ro" \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','/app/profiles/real_mceliece.yaml','--out','/app/reports/mceliece_run2.json']))"
+
+diff -u \
+  <(jq 'del(.elapsed_ms)' reports/mceliece_run1.json) \
+  <(jq 'del(.elapsed_ms)' reports/mceliece_run2.json) \
+  || true
+
+jq 'del(.elapsed_ms)' reports/mceliece_run1.json > /tmp/m1.json
+jq 'del(.elapsed_ms)' reports/mceliece_run2.json > /tmp/m2.json
+sha256sum /tmp/m1.json /tmp/m2.json
+```
