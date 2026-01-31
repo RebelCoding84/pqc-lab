@@ -43,18 +43,30 @@ If you change dependencies (for example adding PyYAML), run `pixi install` to re
 
 The baseline is CPU-only and intentionally minimal. Additional capabilities (PQC provider libraries, GPU acceleration, or containerized deployments) can be added later via Pixi profiles without changing the core baseline.
 
-## PQC container
+## PQC container (opt-in)
 
-Use the PQC container for opt-in runs that include liboqs / ML-KEM support.
+Use the PQC container for opt-in runs that include **liboqs** (ML-KEM, Classic McEliece, etc.).
 
-## Reproducibility check (ML-KEM / liboqs)
+Prerequisites:
+- Docker
+- `jq` (Fedora: `sudo dnf install jq`)
 
-Run the ML-KEM profile twice inside the PQC container, save JSON outputs to a mounted reports volume, and compare normalized results with `elapsed_ms` removed.
+Build the PQC image:
+
+```bash
+docker build -f docker/Dockerfile.pqc -t pqc-lab:pqc .
+```
+
+Notes:
+
+The PQC container image is immutable. These commands assume bash (process substitution `<(...)`).
+
+### Reproducibility check (ML-KEM / liboqs)
+
+Run the ML-KEM profile twice inside the PQC container, save JSON outputs to a mounted `reports/` volume, and compare normalized results with `elapsed_ms` removed.
 
 ```bash
 mkdir -p reports
-
-docker build -f docker/Dockerfile.pqc -t pqc-lab:pqc .
 
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
@@ -76,27 +88,15 @@ jq 'del(.elapsed_ms)' reports/run2.json > /tmp/r2.json
 sha256sum /tmp/r1.json /tmp/r2.json
 ```
 
-## Reproducibility check (Classic McEliece / liboqs)
+Expected result: diff prints nothing and the two SHA256 hashes match.
 
-Run the Classic McEliece profile twice inside the PQC container, save JSON outputs to a mounted reports volume, and compare normalized results with elapsed_ms removed.
+### Reproducibility check (Classic McEliece / liboqs)
 
-> Note: The PQC container image is immutable. To use a host-side profile, mount `profiles/` read-only into `/app/profiles`.
+Run the Classic McEliece profile twice inside the PQC container, save JSON outputs to a mounted `reports/` volume, and compare normalized results with `elapsed_ms` removed. To use a host-side profile, mount `profiles/` read-only into `/app/profiles`. This uses the same `pqc-lab:pqc` image as the ML-KEM run.
+
+Profile: `profiles/real_mceliece.yaml`
 
 ```bash
-cat > profiles/real_mceliece.yaml <<'EOF'
-name: "Classic McEliece Reference Run"
-provider: "liboqs"
-key_exchange:
-  algorithm: "Classic-McEliece-460896"
-  iterations: 50
-  seed_mode: "deterministic"
-  seed: 1
-  failure_injection: false
-metadata:
-  standard: "NIST PQC finalist"
-  note: "Classic McEliece (code-based KEM) via liboqs"
-EOF
-
 mkdir -p reports
 
 docker run --rm \
@@ -120,3 +120,5 @@ jq 'del(.elapsed_ms)' reports/mceliece_run1.json > /tmp/m1.json
 jq 'del(.elapsed_ms)' reports/mceliece_run2.json > /tmp/m2.json
 sha256sum /tmp/m1.json /tmp/m2.json
 ```
+
+Expected result: diff prints nothing and the two SHA256 hashes match.
