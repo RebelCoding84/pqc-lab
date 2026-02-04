@@ -59,7 +59,8 @@ docker build -f docker/Dockerfile.pqc -t pqc-lab:pqc .
 
 Notes:
 
-The PQC container image is immutable. These commands assume bash (process substitution `<(...)`).
+- The PQC container image is immutable.
+- These commands assume bash (process substitution `<(...)`).
 
 ### Reproducibility check (ML-KEM / liboqs)
 
@@ -122,3 +123,59 @@ sha256sum /tmp/m1.json /tmp/m2.json
 ```
 
 Expected result: diff prints nothing and the two SHA256 hashes match.
+
+### Reproducibility check (Hybrid / liboqs)
+
+Run each hybrid profile twice inside the PQC container, save JSON outputs to a mounted `reports/` volume, and compare normalized results with `elapsed_ms` removed.
+
+Profiles:
+- `profiles/real_hybrid_mlkem_frodo.yaml`
+- `profiles/real_hybrid_mlkem_hqc.yaml`
+
+```bash
+mkdir -p reports
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run1.json']))"
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run2.json']))"
+
+diff -u \
+  <(jq 'del(.elapsed_ms)' reports/hybrid_frodo_run1.json) \
+  <(jq 'del(.elapsed_ms)' reports/hybrid_frodo_run2.json) \
+  || true
+
+jq 'del(.elapsed_ms)' reports/hybrid_frodo_run1.json > /tmp/hf1.json
+jq 'del(.elapsed_ms)' reports/hybrid_frodo_run2.json > /tmp/hf2.json
+sha256sum /tmp/hf1.json /tmp/hf2.json
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run1.json']))"
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run2.json']))"
+
+diff -u \
+  <(jq 'del(.elapsed_ms)' reports/hybrid_hqc_run1.json) \
+  <(jq 'del(.elapsed_ms)' reports/hybrid_hqc_run2.json) \
+  || true
+
+jq 'del(.elapsed_ms)' reports/hybrid_hqc_run1.json > /tmp/hh1.json
+jq 'del(.elapsed_ms)' reports/hybrid_hqc_run2.json > /tmp/hh2.json
+sha256sum /tmp/hh1.json /tmp/hh2.json
+```
+
+Expected result: diff prints nothing and the two SHA256 hashes match.
+
+## License
+
+This project is licensed under the Apache License 2.0. See `LICENSE`.
