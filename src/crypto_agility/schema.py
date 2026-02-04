@@ -8,11 +8,20 @@ import yaml
 
 ALLOWED_ALGORITHMS = {"mock_ecdh", "mock_pqc_kem"}
 MAX_SEED = 2**32 - 1
+MAX_HYBRID_OUTPUT_LEN = 1024
+
+
+@dataclass(frozen=True)
+class HybridConfig:
+    algorithms: tuple[str, str]
+    kdf: str
+    output_len: int
 
 
 @dataclass(frozen=True)
 class KeyExchangeConfig:
-    algorithm: str
+    algorithm: str | None
+    hybrid: HybridConfig | None
     iterations: int
     seed_mode: str
     seed: int
@@ -71,17 +80,45 @@ def _parse_profile(data: Mapping[str, Any]) -> Profile:
 def _parse_key_exchange(data: Mapping[str, Any], provider: str | None) -> KeyExchangeConfig:
     _require_keys(
         data,
-        {"algorithm", "iterations", "seed_mode", "seed", "failure_injection"},
-        {"algorithm", "iterations", "seed_mode", "seed", "failure_injection"},
+        {"algorithm", "hybrid", "iterations", "seed_mode", "seed", "failure_injection"},
+        {"iterations", "seed_mode", "seed", "failure_injection"},
         "key_exchange",
     )
-    algorithm = data["algorithm"]
-    if provider == "liboqs":
-        if not isinstance(algorithm, str) or not algorithm.strip():
-            raise ValueError("algorithm must be a non-empty string.")
+    algorithm = data.get("algorithm")
+    hybrid = data.get("hybrid")
+    if (algorithm is None) == (hybrid is None):
+        raise ValueError("key_exchange must set exactly one of algorithm or hybrid.")
+
+    if hybrid is not None:
+        if provider != "liboqs":
+            raise ValueError("hybrid mode is only supported with provider 'liboqs'.")
+        if not isinstance(hybrid, Mapping):
+            raise ValueError("hybrid must be a mapping.")
+        _require_keys(hybrid, {"algorithms", "kdf", "output_len"}, {"algorithms", "kdf", "output_len"}, "hybrid")
+        algorithms = hybrid.get("algorithms")
+        if (
+            not isinstance(algorithms, list)
+            or len(algorithms) != 2
+            or any(not isinstance(item, str) or not item.strip() for item in algorithms)
+        ):
+            raise ValueError("hybrid.algorithms must be a list of two non-empty strings.")
+        kdf = hybrid.get("kdf")
+        if kdf != "HKDF-SHA256":
+            raise ValueError("hybrid.kdf must be 'HKDF-SHA256'.")
+        output_len = hybrid.get("output_len")
+        if not isinstance(output_len, int) or not (1 <= output_len <= MAX_HYBRID_OUTPUT_LEN):
+            raise ValueError(f"hybrid.output_len must be an int between 1 and {MAX_HYBRID_OUTPUT_LEN}.")
+        hybrid_config = HybridConfig(algorithms=(algorithms[0], algorithms[1]), kdf=kdf, output_len=output_len)
+        algorithm_value = None
     else:
-        if algorithm not in ALLOWED_ALGORITHMS:
-            raise ValueError(f"algorithm must be one of {sorted(ALLOWED_ALGORITHMS)}.")
+        algorithm_value = algorithm
+        if provider == "liboqs":
+            if not isinstance(algorithm_value, str) or not algorithm_value.strip():
+                raise ValueError("algorithm must be a non-empty string.")
+        else:
+            if algorithm_value not in ALLOWED_ALGORITHMS:
+                raise ValueError(f"algorithm must be one of {sorted(ALLOWED_ALGORITHMS)}.")
+        hybrid_config = None
 
     iterations = data["iterations"]
     if not isinstance(iterations, int) or not (1 <= iterations <= 10_000):
@@ -100,7 +137,8 @@ def _parse_key_exchange(data: Mapping[str, Any], provider: str | None) -> KeyExc
         raise ValueError("failure_injection must be a boolean.")
 
     return KeyExchangeConfig(
-        algorithm=algorithm,
+        algorithm=algorithm_value,
+        hybrid=hybrid_config,
         iterations=iterations,
         seed_mode=seed_mode,
         seed=seed,

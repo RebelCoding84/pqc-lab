@@ -80,7 +80,30 @@ Sanity run summary (from `reports/mceliece_sanity.json`):
 - Timing example (non-deterministic metric): 54.23221000000922 ms
 - Metadata: standard "NIST PQC (code-based)", note "HQC-256 via liboqs (practical code-based KEM baseline)"
 
-## 5. Reproducibility Results
+## 5. Hybrid Scenarios Tested
+
+Hybrid mode combines two liboqs KEMs per iteration and derives a single hybrid shared secret using HKDF-SHA256:
+- HKDF input: `ss1 || ss2`
+- Salt: `pqc-lab-hybrid`
+- Info: `crypto-agility-hybrid`
+- Output length: 32 bytes (profile-defined)
+
+Hybrid profiles (operational, not a security proof):
+- ML-KEM-768 + FrodoKEM-976-SHAKE
+- ML-KEM-768 + HQC-256
+
+How to run (PQC container, reports mounted):
+
+```bash
+mkdir -p reports
+
+docker run --rm \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_mlkem_frodo.json']))"
+```
+
+## 6. Reproducibility Results
 
 ### 5.1 Classic McEliece reproducibility proof
 Two independent runs produced identical normalized JSON (with `elapsed_ms` removed).
@@ -91,16 +114,17 @@ Two independent runs produced identical normalized JSON (with `elapsed_ms` remov
 
 This demonstrates byte-level reproducibility for the deterministic run, excluding timing noise.
 
-## 6. Observations
+## 7. Observations
 - All four algorithms execute through the same harness/provider interface (crypto-agility via profile switching).
 - Algorithm choice materially affects runtime cost under identical iterations and environment:
   - ML-KEM-768 is fastest and Classic McEliece-460896 is slowest in these examples; FrodoKEM-976-SHAKE and HQC-256 fall between them.
 - Shared secret length varies across mechanisms (24/32/64 bytes), which impacts downstream integration and storage expectations.
 - `elapsed_ms` is treated as non-deterministic noise; determinism is proven via JSON normalization.
 
-## 7. Limitations
+## 8. Limitations
 - This work validates orchestration, determinism, and operational behavior.
 - It does not claim cryptographic security proofs, side-channel resistance, or adversarial robustness testing.
+- Hybrid mode is an operational proof of orchestration, not a security or side-channel proof.
 
-## 8. Conclusion
+## 9. Conclusion
 PQC Lab demonstrates crypto-agility with reproducible, profile-driven algorithm switching using liboqs, and produces audit-friendly deterministic artifacts suitable for integration into a wider PQC testing infrastructure.

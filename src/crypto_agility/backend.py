@@ -26,6 +26,9 @@ def run_mock_exchange(profile: dict) -> dict:
 def run_liboqs_exchange(profile: dict) -> dict:
     """Run a KEM exchange via liboqs-python."""
     import oqs
+    seed_material = profile.get("seed_material")
+    if seed_material is not None:
+        _maybe_seed_oqs(oqs, seed_material)
 
     algorithm = profile.get("algorithm")
     if not algorithm:
@@ -39,10 +42,29 @@ def run_liboqs_exchange(profile: dict) -> dict:
         raise ValueError("Shared secret mismatch")
 
     mechanism = getattr(kem, "details", {}).get("name", algorithm)
-    return {
+    response = {
         "status": "success",
         "provider": "liboqs",
         "mechanism": mechanism,
         "shared_secret_length": len(shared_secret_alice),
         "iterations": profile.get("iterations", 1),
     }
+    if profile.get("return_shared_secret"):
+        response["shared_secret"] = shared_secret_alice
+    return response
+
+
+def _maybe_seed_oqs(oqs_module, seed_material: bytes) -> None:
+    rand = getattr(oqs_module, "rand", None)
+    if rand is None:
+        return
+    init_fn = getattr(rand, "randombytes_init", None)
+    if init_fn is None:
+        return
+    try:
+        init_fn(seed_material, b"pqc-lab-hybrid")
+    except TypeError:
+        try:
+            init_fn(seed_material)
+        except Exception:
+            return

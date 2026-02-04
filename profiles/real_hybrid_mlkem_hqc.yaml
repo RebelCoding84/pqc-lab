@@ -1,0 +1,16 @@
+name: "Hybrid ML-KEM + HQC Reference Run"
+provider: "liboqs"
+key_exchange:
+  hybrid:
+    algorithms:
+      - "ML-KEM-768"
+      - "HQC-256"
+    kdf: "HKDF-SHA256"
+    output_len: 32
+  iterations: 50
+  seed_mode: "deterministic"
+  seed: 1
+  failure_injection: false
+metadata:
+  standard: "Operational hybrid orchestration"
+  note: "Hybrid KEM orchestration (ML-KEM-768 + HQC-256); operational test only, not a security proof"

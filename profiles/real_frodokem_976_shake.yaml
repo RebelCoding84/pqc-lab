@@ -1,0 +1,11 @@
+name: "FrodoKEM Reference Run"
+provider: "liboqs"
+key_exchange:
+  algorithm: "FrodoKEM-976-SHAKE"
+  iterations: 50
+  seed_mode: "deterministic"
+  seed: 1
+  failure_injection: false
+metadata:
+  standard: "NIST PQC (lattice, unstructured LWE)"
+  note: "FrodoKEM-976-SHAKE via liboqs (conservative baseline vs ML-KEM)"

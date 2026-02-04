@@ -1,0 +1,11 @@
+name: "HQC Reference Run"
+provider: "liboqs"
+key_exchange:
+  algorithm: "HQC-256"
+  iterations: 50
+  seed_mode: "deterministic"
+  seed: 1
+  failure_injection: false
+metadata:
+  standard: "NIST PQC (code-based)"
+  note: "HQC-256 via liboqs (practical code-based KEM baseline)"
