@@ -41,7 +41,8 @@ Demonstrate a reproducible, opt-in PQC testing workflow where key-exchange algor
 - Deterministic: true (seed=1)
 - Result: success_count=50, failure_count=0
 - Shared secret length: 32 bytes
-- Timing example (non-deterministic metric): 25.5196 ms
+- Timing example (non-deterministic metric): 25.519632999930764 ms
+- Metadata: standard "NIST FIPS 203", note "ML-KEM (formerly CRYSTALS-Kyber)"
 
 Sanity run summary (from `reports/run_sanity_mlkem.json`):
 - ok=50, fail=0, ss_len=32, deterministic=true
@@ -53,10 +54,31 @@ Sanity run summary (from `reports/run_sanity_mlkem.json`):
 - Deterministic: true (seed=1)
 - Result: success_count=50, failure_count=0
 - Shared secret length: 32 bytes
-- Timing example (non-deterministic metric): 126.8912 ms
+- Timing example (non-deterministic metric): 126.8911510005637 ms
+- Metadata: standard "NIST PQC finalist", note "Classic McEliece (code-based KEM) via liboqs"
 
 Sanity run summary (from `reports/mceliece_sanity.json`):
 - ok=50, fail=0, ss_len=32, deterministic=true
+
+### 4.3 FrodoKEM-976-SHAKE (NIST PQC, unstructured LWE)
+- Algorithm: FrodoKEM-976-SHAKE
+- Provider: liboqs
+- Iterations: 50
+- Deterministic: true (seed=1)
+- Result: success_count=50, failure_count=0
+- Shared secret length: 24 bytes
+- Timing example (non-deterministic metric): 39.94825500001298 ms
+- Metadata: standard "NIST PQC (lattice, unstructured LWE)", note "FrodoKEM-976-SHAKE via liboqs (conservative baseline vs ML-KEM)"
+
+### 4.4 HQC-256 (NIST PQC, code-based)
+- Algorithm: HQC-256
+- Provider: liboqs
+- Iterations: 50
+- Deterministic: true (seed=1)
+- Result: success_count=50, failure_count=0
+- Shared secret length: 64 bytes
+- Timing example (non-deterministic metric): 54.23221000000922 ms
+- Metadata: standard "NIST PQC (code-based)", note "HQC-256 via liboqs (practical code-based KEM baseline)"
 
 ## 5. Reproducibility Results
 
@@ -70,9 +92,11 @@ Two independent runs produced identical normalized JSON (with `elapsed_ms` remov
 This demonstrates byte-level reproducibility for the deterministic run, excluding timing noise.
 
 ## 6. Observations
-- Both algorithms execute through the same harness/provider interface (crypto-agility via profile switching).
+- All four algorithms execute through the same harness/provider interface (crypto-agility via profile switching).
 - Algorithm choice materially affects runtime cost under identical iterations and environment:
-  - ML-KEM-768 is faster than Classic McEliece-460896 in this setup (timing varies, but consistently higher for McEliece in these runs).
+  - ML-KEM-768 is fastest and Classic McEliece-460896 is slowest in these examples; FrodoKEM-976-SHAKE and HQC-256 fall between them.
+- Shared secret length varies across mechanisms (24/32/64 bytes), which impacts downstream integration and storage expectations.
+- `elapsed_ms` is treated as non-deterministic noise; determinism is proven via JSON normalization.
 
 ## 7. Limitations
 - This work validates orchestration, determinism, and operational behavior.
