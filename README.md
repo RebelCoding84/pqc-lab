@@ -176,6 +176,35 @@ sha256sum /tmp/hh1.json /tmp/hh2.json
 
 Expected result: diff prints nothing and the two SHA256 hashes match.
 
+## Capacity benchmarks (audit-ready dataset)
+
+Current capacity datasets:
+- `reports/capacity/mlkem768/`
+- `reports/capacity/hybrid_frodo/`
+- `reports/capacity/hybrid_hqc/`
+
+These datasets represent burst-model handshake capacity tests with a concurrency sweep and repeated runs, reported with throughput plus latency percentiles (`p50/p95/p99/max`) and failure counts for audit-oriented engineering comparison.
+
+How to reproduce (example single run):
+
+```bash
+export GIT_COMMIT="$(git rev-parse --short HEAD)"
+mkdir -p reports/capacity/mlkem768
+
+docker run --rm \
+  -e GIT_COMMIT="$GIT_COMMIT" \
+  -v "$PWD/reports:/app/reports" \
+  pqc-lab:pqc \
+  pixi run python -m src.capacity.harness \
+    --profile profiles/real_mlkem.yaml \
+    --concurrency 8 \
+    --duration 60 \
+    --warmup 10 \
+    --out /app/reports/capacity/mlkem768/mlkem768_c8_r1.json
+```
+
+Results are host-specific. For cross-run analysis, compare trends (for example knee point and tail-latency behavior) rather than absolute values.
+
 ## License
 
 This project is licensed under the Apache License 2.0. See `LICENSE`.

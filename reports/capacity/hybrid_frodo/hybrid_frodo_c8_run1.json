@@ -1,0 +1,45 @@
+{
+  "concurrency": 8,
+  "cpu": {
+    "avg_percent": 25.20924369747896,
+    "peak_percent": 26.6,
+    "sample_interval_s": 0.5
+  },
+  "duration_s": 60,
+  "environment": {
+    "cpu_count": 32,
+    "git_commit": "d87ff7e",
+    "image": "pqc-lab:pqc",
+    "platform": "Linux-6.18.7-200.fc43.x86_64-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.11.14",
+    "type": "bare_metal_container"
+  },
+  "errors": [],
+  "latency_ms": {
+    "count": 114686,
+    "max": 9.51076399996964,
+    "p50": 4.14795199958462,
+    "p95": 4.26298299953487,
+    "p99": 5.159129350295187
+  },
+  "latency_truncated": false,
+  "mode": "hybrid",
+  "notes": [
+    "Warmup completed; warmup metrics discarded and counters reset."
+  ],
+  "profile_name": "Hybrid ML-KEM + FrodoKEM Reference Run",
+  "profile_path": "profiles/real_hybrid_mlkem_frodo.yaml",
+  "provider": "liboqs",
+  "results": {
+    "failure_count": 0,
+    "success_count": 114686,
+    "throughput_hs_per_sec": 1911.4333333333334
+  },
+  "timestamp_utc": "2026-02-28T04:42:42.807679Z",
+  "warmup_s": 10,
+  "workload": {
+    "handshake_model": "burst",
+    "iterations_per_handshake": 1
+  }
+}

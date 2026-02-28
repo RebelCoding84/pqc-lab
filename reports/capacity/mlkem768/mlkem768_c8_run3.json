@@ -1,0 +1,46 @@
+{
+  "concurrency": 8,
+  "cpu": {
+    "avg_percent": 5.746218487394958,
+    "peak_percent": 7.2,
+    "sample_interval_s": 0.5
+  },
+  "duration_s": 60,
+  "environment": {
+    "cpu_count": 32,
+    "git_commit": "d87ff7e",
+    "image": "pqc-lab:pqc",
+    "platform": "Linux-6.18.7-200.fc43.x86_64-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.11.14",
+    "type": "bare_metal_container"
+  },
+  "errors": [],
+  "latency_ms": {
+    "count": 2000000,
+    "max": 1.4217709999684303,
+    "p50": 0.1825620001909556,
+    "p95": 0.31955200029187836,
+    "p99": 0.426834089885233
+  },
+  "latency_truncated": true,
+  "mode": "single",
+  "notes": [
+    "Warmup completed; warmup metrics discarded and counters reset.",
+    "Latency list hit 2,000,000 samples; additional latencies were dropped."
+  ],
+  "profile_name": "NIST FIPS 203 Reference Run",
+  "profile_path": "profiles/real_mlkem.yaml",
+  "provider": "liboqs",
+  "results": {
+    "failure_count": 0,
+    "success_count": 2382701,
+    "throughput_hs_per_sec": 39711.683333333334
+  },
+  "timestamp_utc": "2026-02-28T04:15:52.765365Z",
+  "warmup_s": 10,
+  "workload": {
+    "handshake_model": "burst",
+    "iterations_per_handshake": 1
+  }
+}
