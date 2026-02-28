@@ -23,4 +23,7 @@ htmlcov/
 .idea/
 
 # Local run artifacts (do not commit)
-reports/
+# Allow reproducible PQC benchmark datasets while ignoring other generated reports
+reports/*
+!reports/capacity/
+!reports/capacity/**

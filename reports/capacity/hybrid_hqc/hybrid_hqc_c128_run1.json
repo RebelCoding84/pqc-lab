@@ -1,0 +1,45 @@
+{
+  "concurrency": 128,
+  "cpu": {
+    "avg_percent": 97.51442307692308,
+    "peak_percent": 98.9,
+    "sample_interval_s": 0.5
+  },
+  "duration_s": 60,
+  "environment": {
+    "cpu_count": 32,
+    "git_commit": "d87ff7e",
+    "image": "pqc-lab:pqc",
+    "platform": "Linux-6.18.7-200.fc43.x86_64-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python": "3.11.14",
+    "type": "bare_metal_container"
+  },
+  "errors": [],
+  "latency_ms": {
+    "count": 30031,
+    "max": 1047.081124000215,
+    "p50": 231.34330900029454,
+    "p95": 469.78743350018703,
+    "p99": 607.9280330006441
+  },
+  "latency_truncated": false,
+  "mode": "hybrid",
+  "notes": [
+    "Warmup completed; warmup metrics discarded and counters reset."
+  ],
+  "profile_name": "Hybrid ML-KEM + HQC Reference Run",
+  "profile_path": "profiles/real_hybrid_mlkem_hqc.yaml",
+  "provider": "liboqs",
+  "results": {
+    "failure_count": 0,
+    "success_count": 30031,
+    "throughput_hs_per_sec": 500.51666666666665
+  },
+  "timestamp_utc": "2026-02-28T05:03:49.171860Z",
+  "warmup_s": 10,
+  "workload": {
+    "handshake_model": "burst",
+    "iterations_per_handshake": 1
+  }
+}
