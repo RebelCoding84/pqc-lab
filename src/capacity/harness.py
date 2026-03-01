@@ -34,6 +34,7 @@ import math
 import os
 import platform
 import statistics
+import subprocess
 import sys
 import threading
 import time
@@ -449,8 +450,9 @@ def _build_environment() -> dict[str, Any]:
         "cpu_count": int(os.cpu_count() or 0),
         "platform": platform.platform(),
         "processor": platform.processor() or "",
-        "git_commit": os.environ.get("GIT_COMMIT", ""),
-        "in_container": _detect_in_container(),
+        # Always emit explicit metadata values for downstream report schemas.
+        "git_commit": _detect_git_commit(),
+        "in_container": bool(_detect_in_container()),
     }
 
 
@@ -560,15 +562,37 @@ def _detect_mode(profile_dict: Mapping[str, Any]) -> str:
     return "single"
 
 
+def _detect_git_commit() -> str:
+    commit_from_env = os.environ.get("GIT_COMMIT", "").strip()
+    if commit_from_env:
+        return commit_from_env
+
+    # Best-effort fallback for local runs when GIT_COMMIT is not injected.
+    try:
+        proc = subprocess.run(
+            ["git", "rev-parse", "--short", "HEAD"],
+            check=False,
+            capture_output=True,
+            text=True,
+            timeout=2.0,
+        )
+    except (OSError, subprocess.SubprocessError):
+        return ""
+    if proc.returncode != 0:
+        return ""
+    return proc.stdout.strip()
+
+
 def _detect_in_container() -> bool:
-    if Path("/.dockerenv").exists():
+    if Path("/.dockerenv").exists() or Path("/run/.containerenv").exists():
         return True
     try:
         cgroup = Path("/proc/1/cgroup").read_text(encoding="utf-8", errors="ignore")
     except OSError:
         return False
     lowered = cgroup.lower()
-    return "/docker" in lowered or "/kubepods" in lowered
+    markers = ("/docker", "/kubepods", "/containerd", "/podman", "/lxc")
+    return any(marker in lowered for marker in markers)
 
 
 def _start_cpu_sampler(

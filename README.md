@@ -214,9 +214,9 @@ Results are host-specific; compare trends (saturation, tail latency) rather than
 
 Latest campaign:
 
-- Ryzen 9950X baseline (2026-02-28)
-  `docs/capacity/2026-02-28_ryzen9950x_baseline/executive_summary.md`
-  `docs/capacity/2026-02-28_ryzen9950x_baseline/report.md`
+- Ryzen 9950X Fedora bare metal (2026-03-01)
+  `docs/capacity/2026-03-01_ryzen9950x_fedora_baremetal/executive_summary.md`
+  `docs/capacity/2026-03-01_ryzen9950x_fedora_baremetal/report.md`
 
 Campaign datasets include repeatability runs, tail-latency analysis, and CPU saturation measurements for engineering comparison and review.
 
