@@ -33,8 +33,8 @@ This harness proves orchestration, deterministic execution, and profile-driven a
 Run the example profiles:
 
 ```bash
-pixi run python -m crypto_agility.run --profile profiles/mock_ecdh.yaml
-pixi run python -m crypto_agility.run --profile profiles/mock_pqc_kem.yaml
+pixi run python -m src.crypto_agility.run --profile profiles/mock_ecdh.yaml
+pixi run python -m src.crypto_agility.run --profile profiles/mock_pqc_kem.yaml
 ```
 
 If you change dependencies (for example adding PyYAML), run `pixi install` to refresh `pixi.lock`.
@@ -210,6 +210,7 @@ Results are host-specific. For cross-run analysis, compare trends (for example k
 ## Capacity Benchmark Campaigns
 
 This repository includes audit-ready PQC capacity benchmark campaigns.
+Results are host-specific; compare trends (saturation, tail latency) rather than absolute numbers.
 
 Latest campaign:
 
@@ -221,7 +222,7 @@ Campaign datasets include repeatability runs, tail-latency analysis, and CPU sat
 
 ## Citing
 
-If you use this software or the benchmark datasets, cite the metadata in `CITATION.cff` and reference the release tag `v0.1.0-capacity-baseline-2026-02`.
+If you use this software or the benchmark datasets, cite the metadata in `CITATION.cff` and reference the tag: `v0.1.0-capacity-baseline-2026-02`. The latest release may appear as `v0.1.0` in GitHub UI.
 
 ## License
 
