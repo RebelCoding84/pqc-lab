@@ -185,7 +185,9 @@ Current capacity datasets:
 
 These datasets represent burst-model handshake capacity tests with a concurrency sweep and repeated runs, reported with throughput plus latency percentiles (`p50/p95/p99/max`) and failure counts for audit-oriented engineering comparison.
 
-How to reproduce (example single run):
+### Reproduce the capacity runs
+
+Methodology and run parameters are documented in `docs/capacity_methodology.md`.
 
 ```bash
 export GIT_COMMIT="$(git rev-parse --short HEAD)"
@@ -204,6 +206,22 @@ docker run --rm \
 ```
 
 Results are host-specific. For cross-run analysis, compare trends (for example knee point and tail-latency behavior) rather than absolute values.
+
+## Capacity Benchmark Campaigns
+
+This repository includes audit-ready PQC capacity benchmark campaigns.
+
+Latest campaign:
+
+- Ryzen 9950X baseline (2026-02-28)
+  `docs/capacity/2026-02-28_ryzen9950x_baseline/executive_summary.md`
+  `docs/capacity/2026-02-28_ryzen9950x_baseline/report.md`
+
+Campaign datasets include repeatability runs, tail-latency analysis, and CPU saturation measurements for engineering comparison and review.
+
+## Citing
+
+If you use this software or the benchmark datasets, cite the metadata in `CITATION.cff` and reference the release tag `v0.1.0-capacity-baseline-2026-02`.
 
 ## License
 
