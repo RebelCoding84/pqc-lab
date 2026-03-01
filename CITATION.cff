@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "PQC Lab"
+message: "If you use this software or the benchmark datasets, please cite it."
+type: software
+authors:
+  - family-names: Reiman
+    given-names: Teppo
+year: 2026
+repository-code: "https://github.com/RebelCoding84/pqc-lab"
+license: Apache-2.0
+version: v0.1.0-capacity-baseline-2026-02
+keywords:
+  - post-quantum cryptography
+  - PQC
+  - ML-KEM
+  - FrodoKEM
+  - HQC
+  - benchmarking
+  - capacity planning
+  - latency
+  - throughput
+  - reproducible builds
