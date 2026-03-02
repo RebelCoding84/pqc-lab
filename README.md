@@ -209,6 +209,8 @@ Results are host-specific. For cross-run analysis, compare trends (for example k
 
 ## Capacity Benchmark Campaigns
 
+Benchmarks are executed on dedicated local hardware; CI validates reproducibility and schema correctness only.
+
 This repository includes audit-ready PQC capacity benchmark campaigns.
 Results are host-specific; compare trends (saturation, tail latency) rather than absolute numbers.
 
