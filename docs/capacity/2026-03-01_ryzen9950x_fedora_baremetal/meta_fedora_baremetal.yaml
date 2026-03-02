@@ -1,0 +1,36 @@
+campaign:
+  id: "2026-03-01_ryzen9950x_fedora_baremetal"
+  name: "Fedora Bare Metal PQC Capacity Campaign"
+  date: "2026-03-01"
+
+hardware:
+  cpu_model: "AMD Ryzen 9 9950X"
+  cpu_logical_count: 32
+
+os:
+  platform: "Linux-6.18.13-200.fc43.x86_64-x86_64-with-glibc2.39"
+
+runtime:
+  container_runtime: "docker"
+  image: "pqc-lab:pqc"
+  execution_type: "bare_metal_container"
+
+harness:
+  module: "src.capacity.harness"
+  workload_model: "burst"
+  duration_s: 60
+  warmup_s: 10
+  repeats: 3
+  percentiles: [50, 95, 99, 99.9]
+  cpu_sample_interval_s: 1.0
+  stress_run:
+    profile: "real_hybrid_mlkem_hqc"
+    concurrency: 128
+    repeats: 2
+
+profiles_used:
+  - "real_mlkem"
+  - "real_hybrid_mlkem_frodo"
+  - "real_hybrid_mlkem_hqc"
+
+note: "Results are host-specific; compare trends rather than absolute values across hosts."
