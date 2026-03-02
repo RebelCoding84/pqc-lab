@@ -34,7 +34,6 @@ import math
 import os
 import platform
 import statistics
-import subprocess
 import sys
 import threading
 import time
@@ -43,7 +42,7 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any, Callable, Mapping
 
 import yaml
 
@@ -443,16 +442,20 @@ def _mean_or_none(values: list[float | None]) -> float | None:
 
 
 def _build_environment() -> dict[str, Any]:
+    python_version = _safe_platform_value(platform.python_version)
     return {
         "type": "bare_metal_container",
         "image": "pqc-lab:pqc",
-        "python": platform.python_version(),
         "cpu_count": int(os.cpu_count() or 0),
-        "platform": platform.platform(),
-        "processor": platform.processor() or "",
-        # Always emit explicit metadata values for downstream report schemas.
+        "platform": _safe_platform_value(platform.platform),
+        "processor": _safe_platform_value(platform.processor),
         "git_commit": _detect_git_commit(),
         "in_container": bool(_detect_in_container()),
+        "python_version": python_version,
+        "os_release": _detect_os_release(),
+        "kernel_release": _safe_platform_value(platform.release),
+        "machine": _safe_platform_value(platform.machine),
+        "timestamp_utc": _utc_now_iso(),
     }
 
 
@@ -566,24 +569,14 @@ def _detect_git_commit() -> str:
     commit_from_env = os.environ.get("GIT_COMMIT", "").strip()
     if commit_from_env:
         return commit_from_env
-
-    # Best-effort fallback for local runs when GIT_COMMIT is not injected.
-    try:
-        proc = subprocess.run(
-            ["git", "rev-parse", "--short", "HEAD"],
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=2.0,
-        )
-    except (OSError, subprocess.SubprocessError):
-        return ""
-    if proc.returncode != 0:
-        return ""
-    return proc.stdout.strip()
+    return "unknown"
 
 
 def _detect_in_container() -> bool:
+    ci_value = os.environ.get("CI", "").strip().lower()
+    if ci_value and ci_value not in {"0", "false", "no", "off"}:
+        return True
+
     if Path("/.dockerenv").exists() or Path("/run/.containerenv").exists():
         return True
     try:
@@ -591,8 +584,30 @@ def _detect_in_container() -> bool:
     except OSError:
         return False
     lowered = cgroup.lower()
-    markers = ("/docker", "/kubepods", "/containerd", "/podman", "/lxc")
+    markers = ("docker","kubepods","containerd","podman","lxc")
     return any(marker in lowered for marker in markers)
+
+
+def _detect_os_release() -> str:
+    try:
+        os_release = platform.freedesktop_os_release()
+    except Exception:
+        return ""
+    for key in ("PRETTY_NAME", "NAME", "ID"):
+        value = os_release.get(key)
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
+
+
+def _safe_platform_value(getter: Callable[[], Any]) -> str:
+    try:
+        value = getter()
+    except Exception:
+        return ""
+    if value is None:
+        return ""
+    return str(value)
 
 
 def _start_cpu_sampler(
