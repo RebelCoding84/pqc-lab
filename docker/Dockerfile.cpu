@@ -17,6 +17,7 @@ COPY src ./src
 COPY examples ./examples
 COPY tests ./tests
 COPY profiles ./profiles
+COPY fixtures ./fixtures
 
 RUN pixi install --locked
 RUN pixi run test
