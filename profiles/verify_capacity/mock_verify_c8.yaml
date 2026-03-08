@@ -1,0 +1,15 @@
+schema_version: 1
+benchmark_name: "mock_verify_capacity_smoke"
+operation: "verify"
+provider: "mock_verify"
+algorithm: "ML-DSA"
+pool_path: "fixtures/signatures/mock_verify_pool_256.jsonl"
+concurrency: 8
+warmup_s: 0.05
+duration_s: 0.20
+repeats: 1
+output_dir: "reports/capacity/mock_verify"
+notes:
+  phase: "phase1"
+  purpose: "verify-capacity-smoke"
+

@@ -33,8 +33,8 @@ This harness proves orchestration, deterministic execution, and profile-driven a
 Run the example profiles:
 
 ```bash
-pixi run python -m src.crypto_agility.run --profile profiles/mock_ecdh.yaml
-pixi run python -m src.crypto_agility.run --profile profiles/mock_pqc_kem.yaml
+pixi run python -m crypto_agility.run --profile profiles/mock_ecdh.yaml
+pixi run python -m crypto_agility.run --profile profiles/mock_pqc_kem.yaml
 ```
 
 If you change dependencies (for example adding PyYAML), run `pixi install` to refresh `pixi.lock`.
@@ -185,6 +185,21 @@ Current capacity datasets:
 
 These datasets represent burst-model handshake capacity tests with a concurrency sweep and repeated runs, reported with throughput plus latency percentiles (`p50/p95/p99/max`) and failure counts for audit-oriented engineering comparison.
 
+### Real ML-DSA verify-capacity status (opt-in OQS)
+
+Real ML-DSA verify-capacity measurements are available for:
+`c1, c8, c10, c12, c16, c24, c32, c64, c128`.
+
+Current summary on this host:
+- Peak throughput is near `c8`.
+- Contention begins after `c8` (visible at `c10/c12/c16`).
+- Saturation/queueing behavior is established from `c24` onward.
+
+References:
+- OQS opt-in setup: `docs/oqs_opt_in_setup.md`
+- Verify methodology: `docs/verify_capacity_methodology.md`
+- ML-DSA analysis: `docs/mldsa_verify_capacity_analysis.md`
+
 ### Reproduce the capacity runs
 
 Methodology and run parameters are documented in `docs/capacity_methodology.md`.
@@ -197,7 +212,7 @@ docker run --rm \
   -e GIT_COMMIT="$GIT_COMMIT" \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -m src.capacity.harness \
+  pixi run python -m capacity.harness \
     --profile profiles/real_mlkem.yaml \
     --concurrency 8 \
     --duration 60 \

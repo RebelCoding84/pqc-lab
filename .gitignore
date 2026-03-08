@@ -27,3 +27,7 @@ htmlcov/
 reports/*
 !reports/capacity/
 !reports/capacity/**
+
+.vendor/
+fixtures/signatures/*.jsonl
+reports/capacity/mock_verify/
