@@ -30,4 +30,5 @@ reports/*
 
 .vendor/
 fixtures/signatures/*.jsonl
+!fixtures/signatures/mock_verify_pool_256.jsonl
 reports/capacity/mock_verify/
