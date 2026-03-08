@@ -25,3 +25,27 @@ demo-quantum = "python examples/quantum_aer_smoke.py"
 demo-finance = "python examples/finance_monte_carlo.py"
 demo-energy = "python examples/energy_scenario_monte_carlo.py"
 demo-pqc = "python examples/pqc_roundtrip.py"
+
+[feature.pqc-real.dependencies]
+python = "3.11.*"
+pip = "*"
+git = "*"
+cmake = "*"
+c-compiler = "*"
+cxx-compiler = "*"
+make = "*"
+ninja = "*"
+pkg-config = "*"
+
+[feature.pqc-real.activation.env]
+OQS_INSTALL_PATH = "$PIXI_PROJECT_ROOT/.vendor/liboqs"
+LD_LIBRARY_PATH = "$PIXI_PROJECT_ROOT/.vendor/liboqs/lib"
+PKG_CONFIG_PATH = "$PIXI_PROJECT_ROOT/.vendor/liboqs/lib/pkgconfig"
+
+[feature.pqc-real.tasks]
+bootstrap-oqs = "bash scripts/bootstrap_oqs_local.sh"
+preflight-real-mldsa = "bash scripts/preflight_real_mldsa.sh"
+run-real-verify-first2 = "bash scripts/run_real_verify_first2.sh"
+
+[environments]
+pqc-real = { features = ["pqc-real"] }

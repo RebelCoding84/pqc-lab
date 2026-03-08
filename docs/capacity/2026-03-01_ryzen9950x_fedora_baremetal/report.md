@@ -41,7 +41,7 @@ These results are host-specific; use reproduction primarily for trend comparison
 for profile in real_mlkem real_hybrid_mlkem_frodo real_hybrid_mlkem_hqc; do
   for c in 32 64; do
     docker run --rm -v "$PWD":/work -w /work pqc-lab:pqc \
-      python -m src.capacity.harness \
+      python -m capacity.harness \
       --profile "profiles/${profile}.yaml" \
       --concurrency "$c" \
       --duration 60 \
@@ -55,7 +55,7 @@ done
 
 # Run HQC stress point (C=128, reps=2)
 docker run --rm -v "$PWD":/work -w /work pqc-lab:pqc \
-  python -m src.capacity.harness \
+  python -m capacity.harness \
   --profile profiles/real_hybrid_mlkem_hqc.yaml \
   --concurrency 128 \
   --duration 60 \
