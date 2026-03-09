@@ -72,12 +72,12 @@ mkdir -p reports
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_mlkem.yaml','--out','/app/reports/run1.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_mlkem.yaml','--out','/app/reports/run1.json']))"
 
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_mlkem.yaml','--out','/app/reports/run2.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_mlkem.yaml','--out','/app/reports/run2.json']))"
 
 diff -u \
   <(jq 'del(.elapsed_ms)' reports/run1.json) \
@@ -104,13 +104,13 @@ docker run --rm \
   -v "$PWD/profiles:/app/profiles:ro" \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','/app/profiles/real_mceliece.yaml','--out','/app/reports/mceliece_run1.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','/app/profiles/real_mceliece.yaml','--out','/app/reports/mceliece_run1.json']))"
 
 docker run --rm \
   -v "$PWD/profiles:/app/profiles:ro" \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','/app/profiles/real_mceliece.yaml','--out','/app/reports/mceliece_run2.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','/app/profiles/real_mceliece.yaml','--out','/app/reports/mceliece_run2.json']))"
 
 diff -u \
   <(jq 'del(.elapsed_ms)' reports/mceliece_run1.json) \
@@ -138,12 +138,12 @@ mkdir -p reports
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run1.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run1.json']))"
 
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run2.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run2.json']))"
 
 diff -u \
   <(jq 'del(.elapsed_ms)' reports/hybrid_frodo_run1.json) \
@@ -157,12 +157,12 @@ sha256sum /tmp/hf1.json /tmp/hf2.json
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run1.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run1.json']))"
 
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run2.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run2.json']))"
 
 diff -u \
   <(jq 'del(.elapsed_ms)' reports/hybrid_hqc_run1.json) \
@@ -194,11 +194,12 @@ Current summary on this host:
 - Peak throughput is near `c8`.
 - Contention begins after `c8` (visible at `c10/c12/c16`).
 - Saturation/queueing behavior is established from `c24` onward.
+- Latest analysis includes CPU telemetry and ML-DSA object-size facts.
 
 References:
 - OQS opt-in setup: `docs/oqs_opt_in_setup.md`
 - Verify methodology: `docs/verify_capacity_methodology.md`
-- ML-DSA analysis: `docs/mldsa_verify_capacity_analysis.md`
+- ML-DSA analysis (canonical location): `docs/mldsa_verify_capacity_analysis.md`
 
 ### Reproduce the capacity runs
 
