@@ -144,12 +144,12 @@ mkdir -p reports
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run1.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run1.json']))"
 
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run2.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_frodo.yaml','--out','/app/reports/hybrid_frodo_run2.json']))"
 
 diff -u \
   <(jq 'del(.elapsed_ms)' reports/hybrid_frodo_run1.json) \
@@ -163,12 +163,12 @@ sha256sum /tmp/hf1.json /tmp/hf2.json
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run1.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run1.json']))"
 
 docker run --rm \
   -v "$PWD/reports:/app/reports" \
   pqc-lab:pqc \
-  pixi run python -c "from src.crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run2.json']))"
+  pixi run python -c "from crypto_agility.run import main; raise SystemExit(main(['--profile','profiles/real_hybrid_mlkem_hqc.yaml','--out','/app/reports/hybrid_hqc_run2.json']))"
 
 diff -u \
   <(jq 'del(.elapsed_ms)' reports/hybrid_hqc_run1.json) \
