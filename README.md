@@ -200,6 +200,8 @@ References:
 - OQS opt-in setup: `docs/oqs_opt_in_setup.md`
 - Verify methodology: `docs/verify_capacity_methodology.md`
 - ML-DSA analysis (canonical location): `docs/mldsa_verify_capacity_analysis.md`
+- SLH-DSA coarse sweep analysis: `docs/slhdsa_verify_capacity_analysis.md`
+- ML-DSA vs SLH-DSA comparison: `docs/mldsa_vs_slhdsa_verify_comparison.md`
 
 ### Reproduce the capacity runs
 
