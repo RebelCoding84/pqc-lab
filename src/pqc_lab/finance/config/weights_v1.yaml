@@ -1,0 +1,7 @@
+spread_quality: 0.20
+liquidity: 0.20
+iv_level: 0.12
+iv_minus_rv: 0.18
+delta_moneyness_suitability: 0.14
+dte_suitability: 0.10
+earnings_proximity_penalty: 0.06

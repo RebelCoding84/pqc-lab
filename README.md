@@ -43,6 +43,16 @@ If you change dependencies (for example adding PyYAML), run `pixi install` to re
 
 The baseline is CPU-only and intentionally minimal. Additional capabilities (PQC provider libraries, GPU acceleration, or containerized deployments) can be added later via Pixi profiles without changing the core baseline.
 
+## Offline Finance Research Extension
+
+This repository also includes an offline finance research v1 slice that is isolated from the PQC baseline. It loads local CSV fixtures, applies a deterministic quality gate, scores option snapshots for analysis, and exports JSON/CSV reports without network calls or live market adapters.
+
+Run the example:
+
+```bash
+pixi run python examples/finance_option_scoring.py
+```
+
 ## PQC container (opt-in)
 
 Use the PQC container for opt-in runs that include **liboqs** (ML-KEM, Classic McEliece, etc.).
