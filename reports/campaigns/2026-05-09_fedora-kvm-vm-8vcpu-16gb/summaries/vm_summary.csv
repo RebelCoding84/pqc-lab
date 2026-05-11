@@ -1,0 +1,14 @@
+environment,profile,concurrency,runs_or_repeats,throughput_hs_per_sec,p99_ms,p99_9_ms,max_ms,failures,source_files
+fedora_kvm_vm_8vcpu_16gb,hybrid_frodo,1,3,252.85,4.003505,4.368667,5.363045,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_frodo/fedora_kvm_vm_8vcpu_hybrid_frodo_c1_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_frodo,8,3,1800.422222,4.790273,5.195357,13.342693,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_frodo/fedora_kvm_vm_8vcpu_hybrid_frodo_c8_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_frodo,32,3,1280.655556,57.300876,72.809304,106.917732,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_frodo/fedora_kvm_vm_8vcpu_hybrid_frodo_c32_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_frodo,64,3,1373.755556,120.809104,155.194467,224.021963,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_frodo/fedora_kvm_vm_8vcpu_hybrid_frodo_c64_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_hqc,1,3,34.55,29.306331,29.843378,30.958258,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_hqc/fedora_kvm_vm_8vcpu_hybrid_hqc_c1_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_hqc,8,3,257.761111,31.352268,35.021408,47.966705,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_hqc/fedora_kvm_vm_8vcpu_hybrid_hqc_c8_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_hqc,32,3,257.066667,194.586705,232.1276,317.979792,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_hqc/fedora_kvm_vm_8vcpu_hybrid_hqc_c32_reps3.json
+fedora_kvm_vm_8vcpu_16gb,hybrid_hqc,64,3,257.044444,443.4154,538.194143,699.960969,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/hybrid_hqc/fedora_kvm_vm_8vcpu_hybrid_hqc_c64_reps3.json
+fedora_kvm_vm_8vcpu_16gb,mlkem,1,3,24488.4,0.056417,0.063074,0.566245,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/mlkem/fedora_kvm_vm_8vcpu_mlkem_c1_reps3.json
+fedora_kvm_vm_8vcpu_16gb,mlkem,8,3,13308.088889,1.430671,1.92138,3.912923,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/mlkem/fedora_kvm_vm_8vcpu_mlkem_c8_reps3.json
+fedora_kvm_vm_8vcpu_16gb,mlkem,32,3,11971.394444,8.676724,11.992793,24.667666,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/mlkem/fedora_kvm_vm_8vcpu_mlkem_c32_reps3.json
+fedora_kvm_vm_8vcpu_16gb,mlkem,64,3,11830.016667,17.691419,24.257066,45.453393,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/mlkem/fedora_kvm_vm_8vcpu_mlkem_c64_reps3.json
+fedora_kvm_vm_8vcpu_16gb,mlkem,128,2,11832.15,35.44538,48.706059,101.814896,0,reports/campaigns/2026-05-09_fedora-kvm-vm-8vcpu-16gb/mlkem/fedora_kvm_vm_8vcpu_mlkem_c128_reps2.json

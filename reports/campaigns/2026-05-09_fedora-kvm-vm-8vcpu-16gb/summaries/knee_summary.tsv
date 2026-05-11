@@ -1,0 +1,7 @@
+environment	profile	peak_throughput_c_all	peak_throughput_c_ge8	tail_knee_all	tail_knee_ge8	note
+fedora_baremetal_ryzen9950x	hybrid_frodo	c32	c32			Heuristic: first step where throughput gain <=10% and p99.9 grows >=2x.
+fedora_baremetal_ryzen9950x	hybrid_hqc	c32	c32			Heuristic: first step where throughput gain <=10% and p99.9 grows >=2x.
+fedora_baremetal_ryzen9950x	mlkem	c8	c8			Heuristic: first step where throughput gain <=10% and p99.9 grows >=2x.
+fedora_kvm_vm_8vcpu_16gb	hybrid_frodo	c8	c8	c8→c32	c8→c32	Heuristic: first step where throughput gain <=10% and p99.9 grows >=2x.
+fedora_kvm_vm_8vcpu_16gb	hybrid_hqc	c8	c8	c8→c32	c8→c32	Heuristic: first step where throughput gain <=10% and p99.9 grows >=2x.
+fedora_kvm_vm_8vcpu_16gb	mlkem	c1	c8	c1→c8	c8→c32	Heuristic: first step where throughput gain <=10% and p99.9 grows >=2x.

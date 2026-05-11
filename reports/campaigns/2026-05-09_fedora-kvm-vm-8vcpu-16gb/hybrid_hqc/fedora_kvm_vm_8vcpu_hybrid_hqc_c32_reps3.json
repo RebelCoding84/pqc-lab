@@ -1,0 +1,164 @@
+{
+  "concurrency": 32,
+  "cpu": {
+    "avg_percent": 99.78474576271186,
+    "cpu_count_logical": 8,
+    "loadavg_15m": 6.2001953125,
+    "loadavg_1m": 23.44970703125,
+    "loadavg_5m": 10.28564453125,
+    "peak_percent": 100.0,
+    "process_avg_percent": 794.4627118644067,
+    "process_peak_percent": 797.8,
+    "sample_interval_s": 1.0,
+    "system_avg_percent": 99.78474576271186,
+    "system_peak_percent": 100.0
+  },
+  "duration_s": 60,
+  "environment": {
+    "cpu_count": 8,
+    "git_commit": "6e9718f",
+    "image": "pqc-lab:pqc",
+    "in_container": true,
+    "kernel_release": "6.19.14-200.fc43.x86_64",
+    "machine": "x86_64",
+    "os_release": "Ubuntu 24.04.4 LTS",
+    "platform": "Linux-6.19.14-200.fc43.x86_64-x86_64-with-glibc2.39",
+    "processor": "x86_64",
+    "python_version": "3.11.14",
+    "timestamp_utc": "2026-05-10T23:24:51.765850Z",
+    "type": "bare_metal_container"
+  },
+  "errors": [],
+  "latency_ms": {
+    "count": 15416,
+    "max": 317.97979200018744,
+    "p50": 122.85826399966027,
+    "p95": 169.50284849963282,
+    "p99": 198.6534277502871,
+    "p99_9": 239.47717758992033
+  },
+  "latency_truncated": false,
+  "mode": "hybrid",
+  "notes": [
+    "Warmup completed before each repeat; warmup metrics discarded and counters reset."
+  ],
+  "percentiles": [
+    50,
+    95,
+    99,
+    99.9
+  ],
+  "profile_name": "Hybrid ML-KEM + HQC Reference Run",
+  "profile_path": "profiles/real_hybrid_mlkem_hqc.yaml",
+  "provider": "liboqs",
+  "repeats": [
+    {
+      "cpu": {
+        "avg_percent": 99.78474576271186,
+        "cpu_count_logical": 8,
+        "loadavg_15m": 6.2001953125,
+        "loadavg_1m": 23.44970703125,
+        "loadavg_5m": 10.28564453125,
+        "peak_percent": 100.0,
+        "process_avg_percent": 794.4627118644067,
+        "process_peak_percent": 797.8,
+        "sample_interval_s": 1.0,
+        "system_avg_percent": 99.78474576271186,
+        "system_peak_percent": 100.0
+      },
+      "failure_count": 0,
+      "latency_ms": {
+        "count": 15416,
+        "max": 317.97979200018744,
+        "p50": 122.85826399966027,
+        "p95": 169.50284849963282,
+        "p99": 198.6534277502871,
+        "p99_9": 239.47717758992033
+      },
+      "results": {
+        "failure_count": 0,
+        "success_count": 15416,
+        "throughput_hs_per_sec": 256.93333333333334
+      },
+      "success_count": 15416
+    },
+    {
+      "cpu": {
+        "avg_percent": 99.80338983050848,
+        "cpu_count_logical": 8,
+        "loadavg_15m": 8.0556640625,
+        "loadavg_1m": 28.99609375,
+        "loadavg_5m": 14.75732421875,
+        "peak_percent": 100.0,
+        "process_avg_percent": 794.6372881355932,
+        "process_peak_percent": 797.1,
+        "sample_interval_s": 1.0,
+        "system_avg_percent": 99.80338983050848,
+        "system_peak_percent": 100.0
+      },
+      "failure_count": 0,
+      "latency_ms": {
+        "count": 15418,
+        "max": 266.1217030008629,
+        "p50": 122.94638899993515,
+        "p95": 168.072943849711,
+        "p99": 194.25347712987787,
+        "p99_9": 230.78426024719516
+      },
+      "results": {
+        "failure_count": 0,
+        "success_count": 15418,
+        "throughput_hs_per_sec": 256.96666666666664
+      },
+      "success_count": 15418
+    },
+    {
+      "cpu": {
+        "avg_percent": 99.87796610169492,
+        "cpu_count_logical": 8,
+        "loadavg_15m": 9.4833984375,
+        "loadavg_1m": 28.37451171875,
+        "loadavg_5m": 17.4697265625,
+        "peak_percent": 100.0,
+        "process_avg_percent": 795.2881355932203,
+        "process_peak_percent": 797.9,
+        "sample_interval_s": 1.0,
+        "system_avg_percent": 99.87796610169492,
+        "system_peak_percent": 100.0
+      },
+      "failure_count": 0,
+      "latency_ms": {
+        "count": 15438,
+        "max": 258.1929139996646,
+        "p50": 123.10612100054641,
+        "p95": 166.58079515027563,
+        "p99": 190.85320962991307,
+        "p99_9": 226.12136099877893
+      },
+      "results": {
+        "failure_count": 0,
+        "success_count": 15438,
+        "throughput_hs_per_sec": 257.3
+      },
+      "success_count": 15438
+    }
+  ],
+  "results": {
+    "failure_count": 0,
+    "success_count": 15416,
+    "throughput_hs_per_sec": 256.93333333333334
+  },
+  "summary": {
+    "max_latency_max": 317.97979200018744,
+    "p99_9_mean": 232.1275996119648,
+    "p99_mean": 194.5867048366927,
+    "throughput_mean": 257.06666666666666,
+    "throughput_stdev": 0.2027587510099525
+  },
+  "timestamp_utc": "2026-05-10T23:24:51.765080Z",
+  "warmup_s": 10,
+  "workload": {
+    "handshake_model": "burst",
+    "iterations_per_handshake": 1
+  }
+}
