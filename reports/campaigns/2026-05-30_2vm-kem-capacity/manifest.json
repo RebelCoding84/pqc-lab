@@ -1,0 +1,12 @@
+{
+    "campaign_id": "2vm-kem-capacity-campaign-20260530",
+    "created_utc": "2026-05-30T02:10:59Z",
+    "included_runs": [
+        "2vm-algorithm-baseline-20260526_054841",
+        "2vm-hybrid-mlkem-frodo-20260530_024555",
+        "2vm-hybrid-mlkem-hqc-20260530_033828",
+        "2vm-classic-mceliece-20260530_042759"
+    ],
+    "manifest_file": "manifest.sha256",
+    "notes": "Consolidated 2VM KEM capacity campaign report, summaries and figures."
+}
