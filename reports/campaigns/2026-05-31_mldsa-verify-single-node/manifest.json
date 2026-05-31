@@ -1,0 +1,28 @@
+{
+  "algorithm": "ML-DSA-65",
+  "campaign_id": "2026-05-31_mldsa-verify-single-node",
+  "created_at_utc": "2026-05-31T02:15:19.995984+00:00",
+  "excluded": [
+    "raw JSON reports",
+    "signature pool",
+    "logs",
+    "local environment snapshots"
+  ],
+  "included_files": [
+    "README.md",
+    "report/mldsa_verify_report.md",
+    "summaries/mldsa_verify_summary.csv",
+    "figures/mldsa_verify_p99_latency_vs_concurrency.png",
+    "figures/mldsa_verify_p99_latency_vs_concurrency.svg",
+    "figures/mldsa_verify_p99_latency_vs_throughput.png",
+    "figures/mldsa_verify_p99_latency_vs_throughput.svg",
+    "figures/mldsa_verify_tail_latency_vs_concurrency_log.png",
+    "figures/mldsa_verify_tail_latency_vs_concurrency_log.svg",
+    "figures/mldsa_verify_throughput_vs_concurrency.png",
+    "figures/mldsa_verify_throughput_vs_concurrency.svg"
+  ],
+  "operation": "verify",
+  "package_type": "curated_publication_package",
+  "schema_version": "0.1",
+  "sha256_manifest": "manifest.sha256"
+}
