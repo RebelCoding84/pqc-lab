@@ -162,8 +162,8 @@ def _parse_verify_profile(data: Mapping[str, Any]) -> VerifyBenchmarkProfile:
         raise ValueError("operation must be 'verify'")
 
     provider = _parse_non_empty_str(data["provider"], field="provider")
-    if provider not in {"mock_verify", "real_mldsa"}:
-        raise ValueError("provider must be one of ['mock_verify', 'real_mldsa']")
+    if provider not in {"mock_verify", "real_mldsa", "real_slhdsa"}:
+        raise ValueError("provider must be one of ['mock_verify', 'real_mldsa', 'real_slhdsa']")
 
     algorithm = _parse_non_empty_str(data["algorithm"], field="algorithm")
     pool_path = Path(_parse_non_empty_str(data["pool_path"], field="pool_path"))
@@ -267,6 +267,15 @@ def _validate_pool_compatibility(
     if profile.provider == "real_mldsa" and not pool_algorithm_norm.startswith("mldsa"):
         raise ValueError(
             "real_mldsa profile requires an ML-DSA pool; "
+            f"found pool metadata algorithm {metadata.algorithm!r}"
+        )
+
+    if profile.provider == "real_slhdsa" and not (
+        pool_algorithm_norm.startswith("slhdsa")
+        or pool_algorithm_norm.startswith("sphincs")
+    ):
+        raise ValueError(
+            "real_slhdsa profile requires an SLH-DSA/SPHINCS+ pool; "
             f"found pool metadata algorithm {metadata.algorithm!r}"
         )
 
