@@ -8,6 +8,12 @@ from dataclasses import dataclass
 from typing import Any
 
 PREFERRED_MLDSA_ALGORITHMS = ("ML-DSA-65", "ML-DSA-44", "ML-DSA-87")
+PREFERRED_SLHDSA_ALGORITHMS = (
+    "SPHINCS+-SHA2-128f-simple",
+    "SPHINCS+-SHAKE-128f-simple",
+    "SPHINCS+-SHA2-128s-simple",
+    "SPHINCS+-SHAKE-128s-simple",
+)
 PQC_REAL_HINT = (
     "hint: run `pixi run --environment pqc-real bootstrap-oqs` and "
     "`pixi run --environment pqc-real preflight-real-mldsa`"
@@ -240,6 +246,100 @@ class RealMldsaProvider(VerifyProvider):
             _cleanup_signature_instance(signer)
 
 
+class RealSlhdsaProvider(VerifyProvider):
+    name = "real_slhdsa"
+    test_only = False
+
+    def status(self) -> ProviderStatus:
+        try:
+            oqs = _import_oqs()
+        except ProviderUnavailableError as exc:
+            return ProviderStatus(
+                provider=self.name,
+                available=False,
+                test_only=False,
+                details=str(exc),
+            )
+
+        algorithms = _list_signature_algorithms(oqs)
+        available, details = _slhdsa_support_status(algorithms)
+        if not available and not algorithms:
+            details = "python-oqs imported but signature algorithm discovery returned no values"
+        return ProviderStatus(
+            provider=self.name,
+            available=available,
+            test_only=False,
+            details=details,
+        )
+
+    def resolve_algorithm(self, algorithm: str) -> str:
+        requested = _clean_algorithm_name(algorithm)
+        oqs = _import_oqs()
+        algorithms = _list_signature_algorithms(oqs)
+        if not algorithms:
+            raise ProviderConfigurationError(
+                "real_slhdsa provider cannot list signature mechanisms from python-oqs"
+            )
+
+        if requested in algorithms:
+            return requested
+
+        requested_norm = _normalize_algorithm_name(requested)
+        if requested_norm in {"slhdsa", "sphincs", "sphincsplus"}:
+            preferred = _pick_preferred_slhdsa(algorithms)
+            if preferred is not None:
+                return preferred
+
+        for candidate in algorithms:
+            if _normalize_algorithm_name(candidate) == requested_norm:
+                return candidate
+
+        raise ProviderConfigurationError(
+            "real_slhdsa provider does not support algorithm "
+            f"{requested!r}; available SLH-DSA/SPHINCS+ mechanisms: {sorted(_slhdsa_candidates(algorithms))}"
+        )
+
+    def create_verify_session(self, algorithm: str) -> VerifySession:
+        resolved = self.resolve_algorithm(algorithm)
+        oqs = _import_oqs()
+        signature_instance = _new_signature_instance(oqs, resolved)
+        return _RealMldsaVerifySession(signature_instance)
+
+    def generate_public_material(
+        self,
+        algorithm: str,
+        message: bytes,
+        index: int,
+    ) -> tuple[bytes, bytes]:
+        resolved = self.resolve_algorithm(algorithm)
+        oqs = _import_oqs()
+        signer = _new_signature_instance(oqs, resolved)
+        try:
+            public_key = signer.generate_keypair()
+            signature = signer.sign(message)
+            return bytes(public_key), bytes(signature)
+        finally:
+            _cleanup_signature_instance(signer)
+
+    def generate_public_material_batch(
+        self,
+        algorithm: str,
+        messages: tuple[bytes, ...],
+    ) -> tuple[tuple[bytes, bytes], ...]:
+        resolved = self.resolve_algorithm(algorithm)
+        oqs = _import_oqs()
+        signer = _new_signature_instance(oqs, resolved)
+        try:
+            public_key = bytes(signer.generate_keypair())
+            pairs: list[tuple[bytes, bytes]] = []
+            for message in messages:
+                signature = bytes(signer.sign(message))
+                pairs.append((public_key, signature))
+            return tuple(pairs)
+        finally:
+            _cleanup_signature_instance(signer)
+
+
 def _clean_algorithm_name(algorithm: str) -> str:
     if not isinstance(algorithm, str):
         raise ProviderConfigurationError("algorithm must be a string")
@@ -266,6 +366,35 @@ def _pick_preferred_mldsa(algorithms: list[str]) -> str | None:
     if mldsa_options:
         return mldsa_options[0]
     return None
+
+
+def _slhdsa_candidates(algorithms: list[str]) -> list[str]:
+    candidates: list[str] = []
+    for algorithm in algorithms:
+        normalized = _normalize_algorithm_name(algorithm)
+        if normalized.startswith("slhdsa") or normalized.startswith("sphincs"):
+            candidates.append(algorithm)
+    return candidates
+
+
+def _pick_preferred_slhdsa(algorithms: list[str]) -> str | None:
+    for preferred in PREFERRED_SLHDSA_ALGORITHMS:
+        for algorithm in algorithms:
+            if _normalize_algorithm_name(algorithm) == _normalize_algorithm_name(preferred):
+                return algorithm
+    slhdsa_options = sorted(_slhdsa_candidates(algorithms))
+    if slhdsa_options:
+        return slhdsa_options[0]
+    return None
+
+
+def _slhdsa_support_status(algorithms: list[str]) -> tuple[bool, str]:
+    if not algorithms:
+        return False, "python-oqs imported, but no signature mechanisms were detected"
+    preferred = _pick_preferred_slhdsa(algorithms)
+    if preferred is None:
+        return False, f"no SLH-DSA/SPHINCS+ mechanism exposed; signature mechanisms count={len(algorithms)}"
+    return True, f"available via python-oqs (resolved default: {preferred})"
 
 
 def _mldsa_support_status(algorithms: list[str]) -> tuple[bool, str]:
@@ -339,11 +468,12 @@ def _cleanup_signature_instance(instance: Any) -> None:
 _PROVIDERS: dict[str, VerifyProvider] = {
     "mock_verify": MockVerifyProvider(),
     "real_mldsa": RealMldsaProvider(),
+    "real_slhdsa": RealSlhdsaProvider(),
 }
 
 
 def list_provider_statuses() -> list[ProviderStatus]:
-    ordered_names = ("mock_verify", "real_mldsa")
+    ordered_names = ("mock_verify", "real_mldsa", "real_slhdsa")
     return [_PROVIDERS[name].status() for name in ordered_names]
 
 
