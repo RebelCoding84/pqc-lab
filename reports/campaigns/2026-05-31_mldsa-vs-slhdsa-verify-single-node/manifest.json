@@ -1,0 +1,34 @@
+{
+  "campaign_id": "2026-05-31_mldsa-vs-slhdsa-verify-single-node",
+  "created_at_utc": "2026-05-31T03:12:39.069939+00:00",
+  "excluded": [
+    "raw JSON reports",
+    "signature pools",
+    "logs",
+    "local environment snapshots",
+    "helper scripts"
+  ],
+  "included_files": [
+    "README.md",
+    "report/mldsa_vs_slhdsa_verify_comparison.md",
+    "summaries/verify_comparison_all_points.csv",
+    "summaries/verify_comparison_common_points.csv",
+    "summaries/verify_comparison_key_ratios.csv",
+    "figures/mldsa_vs_slhdsa_p99_latency_vs_concurrency_log.png",
+    "figures/mldsa_vs_slhdsa_p99_latency_vs_concurrency_log.svg",
+    "figures/mldsa_vs_slhdsa_p99_latency_vs_throughput.png",
+    "figures/mldsa_vs_slhdsa_p99_latency_vs_throughput.svg",
+    "figures/mldsa_vs_slhdsa_peak_throughput.png",
+    "figures/mldsa_vs_slhdsa_peak_throughput.svg",
+    "figures/mldsa_vs_slhdsa_throughput_vs_concurrency.png",
+    "figures/mldsa_vs_slhdsa_throughput_vs_concurrency.svg"
+  ],
+  "package_type": "curated_comparison_package",
+  "schema_version": "0.1",
+  "sha256_manifest": "manifest.sha256",
+  "source_packages": [
+    "reports/campaigns/2026-05-31_mldsa-verify-single-node",
+    "reports/campaigns/2026-05-31_slhdsa-verify-single-node"
+  ],
+  "topology": "single-node local host"
+}

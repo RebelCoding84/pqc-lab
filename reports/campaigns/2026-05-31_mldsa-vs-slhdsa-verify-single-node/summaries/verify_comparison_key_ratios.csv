@@ -1,0 +1,5 @@
+metric,value
+peak_verify_throughput_ratio_mldsa_over_slhdsa,7.327393037598052
+peak_p99_latency_ratio_slhdsa_over_mldsa,25.13170966508993
+mldsa_peak_concurrency,8
+slhdsa_peak_concurrency,32
