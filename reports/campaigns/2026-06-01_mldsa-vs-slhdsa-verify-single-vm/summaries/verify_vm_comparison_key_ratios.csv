@@ -1,0 +1,5 @@
+metric,value,note
+mldsa_peak_verify_per_sec,73283.06983158398,c8
+slhdsa_peak_verify_per_sec,22555.043171941878,c8
+peak_throughput_ratio_mldsa_over_slhdsa,3.2490769036854243,peak-to-peak
+p99_ratio_at_peak_slhdsa_over_mldsa,0.5295984749443373,P99 at each algorithm peak point

@@ -1,0 +1,51 @@
+{
+  "schema_version": "0.1",
+  "campaign_id": "2026-06-01_slhdsa-verify-single-vm",
+  "created_at_utc": "2026-06-01T00:14:34.653320+00:00",
+  "package_type": "curated_publication_package",
+  "topology": "single-node VM",
+  "algorithm": "SLH-DSA / SPHINCS+-SHA2-128f-simple",
+  "provider": "real_slhdsa",
+  "operation": "verify",
+  "source_run_id": "single-vm-slhdsa-verify-20260601_025239",
+  "source_run_dir": "/home/rebel/pqc-runs/single-vm-slhdsa-verify-20260601_025239",
+  "vm_diagnostics": {
+    "vm_name": "pqc-fedora-vm-baseline",
+    "topology": "single-node VM local benchmark",
+    "hypervisor": "KVM/libvirt",
+    "cpu_mode": "host-passthrough",
+    "vcpus": 8,
+    "memory_gib": 16,
+    "guest_visible_topology": "1 socket x 8 cores x 1 thread",
+    "explicit_vcpu_pinning": false,
+    "cpu_affinity_observation": "vcpuinfo shows all vCPUs with broad affinity across host logical CPUs; this is a default scheduler-managed VM baseline.",
+    "loadgen_vm_used": false
+  },
+  "results": {
+    "best_throughput": {
+      "concurrency": 8,
+      "verify_per_sec_mean": 22555.043171941878,
+      "p99_ms_mean": 0.39066457661192544
+    },
+    "total_worker_errors": 0,
+    "latency_truncated_any": false
+  },
+  "included_files": [
+    "README.md",
+    "report/slhdsa_vm_verify_report.md",
+    "summaries/slhdsa_vm_verify_summary.csv",
+    "figures/slhdsa_vm_throughput.svg",
+    "figures/slhdsa_vm_p99_latency.svg",
+    "figures/slhdsa_vm_throughput_vs_p99_normalized.svg",
+    "monitoring/post_run_monitoring_summary.json",
+    "environment/vm_diagnostics.md"
+  ],
+  "excluded": [
+    "raw JSON reports",
+    "signature pool",
+    "logs",
+    "full local environment snapshots",
+    "full libvirt XML and vCPU snapshots"
+  ],
+  "sha256_manifest": "manifest.sha256"
+}

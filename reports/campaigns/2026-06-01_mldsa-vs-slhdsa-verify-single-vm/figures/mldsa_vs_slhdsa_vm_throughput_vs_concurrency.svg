@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+<rect width="100%" height="100%" fill="white"/>
+<text x="490.0" y="35" text-anchor="middle" font-family="sans-serif" font-size="23" font-weight="700">ML-DSA vs SLH-DSA VM throughput</text>
+<text x="490" y="60" text-anchor="middle" font-family="sans-serif" font-size="13">KVM/libvirt single-node VM; host-passthrough; 8 vCPU; 16 GiB; no explicit vCPU pinning</text>
+<line x1="90" y1="485" x2="935" y2="485" stroke="black"/>
+<line x1="90" y1="485" x2="90" y2="85" stroke="black"/>
+<line x1="90" y1="485.0" x2="935" y2="485.0" stroke="#ddd"/>
+<text x="80" y="489.0" text-anchor="end" font-family="monospace" font-size="11">0.00</text>
+<line x1="90" y1="405.0" x2="935" y2="405.0" stroke="#ddd"/>
+<text x="80" y="409.0" text-anchor="end" font-family="monospace" font-size="11">16122.28</text>
+<line x1="90" y1="325.0" x2="935" y2="325.0" stroke="#ddd"/>
+<text x="80" y="329.0" text-anchor="end" font-family="monospace" font-size="11">32244.55</text>
+<line x1="90" y1="245.0" x2="935" y2="245.0" stroke="#ddd"/>
+<text x="80" y="249.0" text-anchor="end" font-family="monospace" font-size="11">48366.83</text>
+<line x1="90" y1="165.0" x2="935" y2="165.0" stroke="#ddd"/>
+<text x="80" y="169.0" text-anchor="end" font-family="monospace" font-size="11">64489.10</text>
+<line x1="90" y1="85.0" x2="935" y2="85.0" stroke="#ddd"/>
+<text x="80" y="89.0" text-anchor="end" font-family="monospace" font-size="11">80611.38</text>
+<line x1="90.0" y1="485" x2="90.0" y2="491" stroke="black"/>
+<text x="90.0" y="509" text-anchor="middle" font-family="monospace" font-size="12">c1</text>
+<line x1="136.57480314960628" y1="485" x2="136.57480314960628" y2="491" stroke="black"/>
+<text x="136.57480314960628" y="509" text-anchor="middle" font-family="monospace" font-size="12">c8</text>
+<line x1="149.88188976377953" y1="485" x2="149.88188976377953" y2="491" stroke="black"/>
+<text x="149.88188976377953" y="509" text-anchor="middle" font-family="monospace" font-size="12">c10</text>
+<line x1="163.18897637795277" y1="485" x2="163.18897637795277" y2="491" stroke="black"/>
+<text x="163.18897637795277" y="509" text-anchor="middle" font-family="monospace" font-size="12">c12</text>
+<line x1="189.8031496062992" y1="485" x2="189.8031496062992" y2="491" stroke="black"/>
+<text x="189.8031496062992" y="509" text-anchor="middle" font-family="monospace" font-size="12">c16</text>
+<line x1="243.03149606299215" y1="485" x2="243.03149606299215" y2="491" stroke="black"/>
+<text x="243.03149606299215" y="509" text-anchor="middle" font-family="monospace" font-size="12">c24</text>
+<line x1="296.25984251968504" y1="485" x2="296.25984251968504" y2="491" stroke="black"/>
+<text x="296.25984251968504" y="509" text-anchor="middle" font-family="monospace" font-size="12">c32</text>
+<line x1="509.1732283464567" y1="485" x2="509.1732283464567" y2="491" stroke="black"/>
+<text x="509.1732283464567" y="509" text-anchor="middle" font-family="monospace" font-size="12">c64</text>
+<line x1="935.0" y1="485" x2="935.0" y2="491" stroke="black"/>
+<text x="935.0" y="509" text-anchor="middle" font-family="monospace" font-size="12">c128</text>
+<polyline points="90.00,305.64 136.57,121.36 149.88,124.44 163.19,126.08 189.80,130.95 243.03,151.11 296.26,150.30" fill="none" stroke="black" stroke-width="2.5"/>
+<polyline points="90.00,469.36 136.57,373.08 189.80,374.68 296.26,378.82 509.17,382.04 935.00,384.77" fill="none" stroke="black" stroke-width="2.5" stroke-dasharray="8 5"/>
+<text x="90" y="518" font-family="sans-serif" font-size="13">Solid: ML-DSA-65</text>
+<text x="90" y="538" font-family="sans-serif" font-size="13">Dashed: SLH-DSA</text>
+<text x="490.0" y="552" text-anchor="middle" font-family="sans-serif" font-size="13">Concurrency</text>
+<text x="23" y="280.0" text-anchor="middle" font-family="sans-serif" font-size="13" transform="rotate(-90 23 280.0)">verify/s mean</text>
+</svg>
