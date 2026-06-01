@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="560" viewBox="0 0 980 560">
+<rect width="100%" height="100%" fill="white"/>
+<text x="490.0" y="35" text-anchor="middle" font-family="sans-serif" font-size="24" font-weight="700">ML-DSA-65 VM P99 latency</text>
+<text x="490.0" y="62" text-anchor="middle" font-family="sans-serif" font-size="13">KVM/libvirt single-node VM; host-passthrough; 8 vCPU; 16 GiB; no explicit vCPU pinning</text>
+<line x1="90" y1="480" x2="940" y2="480" stroke="black" stroke-width="1"/>
+<line x1="90" y1="480" x2="90" y2="90" stroke="black" stroke-width="1"/>
+<line x1="90" y1="480.0" x2="940" y2="480.0" stroke="#ddd" stroke-width="1"/>
+<text x="80" y="484.0" text-anchor="end" font-family="monospace" font-size="11">0.00</text>
+<line x1="90" y1="402.0" x2="940" y2="402.0" stroke="#ddd" stroke-width="1"/>
+<text x="80" y="406.0" text-anchor="end" font-family="monospace" font-size="11">0.83</text>
+<line x1="90" y1="324.0" x2="940" y2="324.0" stroke="#ddd" stroke-width="1"/>
+<text x="80" y="328.0" text-anchor="end" font-family="monospace" font-size="11">1.66</text>
+<line x1="90" y1="246.0" x2="940" y2="246.0" stroke="#ddd" stroke-width="1"/>
+<text x="80" y="250.0" text-anchor="end" font-family="monospace" font-size="11">2.49</text>
+<line x1="90" y1="168.0" x2="940" y2="168.0" stroke="#ddd" stroke-width="1"/>
+<text x="80" y="172.0" text-anchor="end" font-family="monospace" font-size="11">3.32</text>
+<line x1="90" y1="90.0" x2="940" y2="90.0" stroke="#ddd" stroke-width="1"/>
+<text x="80" y="94.0" text-anchor="end" font-family="monospace" font-size="11">4.15</text>
+<line x1="90.0" y1="480" x2="90.0" y2="486" stroke="black" stroke-width="1"/>
+<text x="90.0" y="504" text-anchor="middle" font-family="monospace" font-size="12">c1</text>
+<line x1="281.93548387096774" y1="480" x2="281.93548387096774" y2="486" stroke="black" stroke-width="1"/>
+<text x="281.93548387096774" y="504" text-anchor="middle" font-family="monospace" font-size="12">c8</text>
+<line x1="336.7741935483871" y1="480" x2="336.7741935483871" y2="486" stroke="black" stroke-width="1"/>
+<text x="336.7741935483871" y="504" text-anchor="middle" font-family="monospace" font-size="12">c10</text>
+<line x1="391.61290322580646" y1="480" x2="391.61290322580646" y2="486" stroke="black" stroke-width="1"/>
+<text x="391.61290322580646" y="504" text-anchor="middle" font-family="monospace" font-size="12">c12</text>
+<line x1="501.2903225806452" y1="480" x2="501.2903225806452" y2="486" stroke="black" stroke-width="1"/>
+<text x="501.2903225806452" y="504" text-anchor="middle" font-family="monospace" font-size="12">c16</text>
+<line x1="720.6451612903226" y1="480" x2="720.6451612903226" y2="486" stroke="black" stroke-width="1"/>
+<text x="720.6451612903226" y="504" text-anchor="middle" font-family="monospace" font-size="12">c24</text>
+<line x1="940.0" y1="480" x2="940.0" y2="486" stroke="black" stroke-width="1"/>
+<text x="940.0" y="504" text-anchor="middle" font-family="monospace" font-size="12">c32</text>
+<polyline points="90.00,476.50 281.94,410.64 336.77,385.96 391.61,290.56 501.29,306.97 720.65,205.22 940.00,125.45" fill="none" stroke="black" stroke-width="2.5"/>
+<circle cx="90.0" cy="476.4956518668865" r="4" fill="black"/>
+<text x="90.0" y="466.4956518668865" text-anchor="middle" font-family="monospace" font-size="10">0.04</text>
+<circle cx="281.93548387096774" cy="410.6350436628839" r="4" fill="black"/>
+<text x="281.93548387096774" y="400.6350436628839" text-anchor="middle" font-family="monospace" font-size="10">0.74</text>
+<circle cx="336.7741935483871" cy="385.9551686634965" r="4" fill="black"/>
+<text x="336.7741935483871" y="375.9551686634965" text-anchor="middle" font-family="monospace" font-size="10">1.00</text>
+<circle cx="391.61290322580646" cy="290.5582051501133" r="4" fill="black"/>
+<text x="391.61290322580646" y="280.5582051501133" text-anchor="middle" font-family="monospace" font-size="10">2.01</text>
+<circle cx="501.2903225806452" cy="306.97031986560177" r="4" fill="black"/>
+<text x="501.2903225806452" y="296.97031986560177" text-anchor="middle" font-family="monospace" font-size="10">1.84</text>
+<circle cx="720.6451612903226" cy="205.22431295278176" r="4" fill="black"/>
+<text x="720.6451612903226" y="195.22431295278176" text-anchor="middle" font-family="monospace" font-size="10">2.92</text>
+<circle cx="940.0" cy="125.45454545454544" r="4" fill="black"/>
+<text x="940.0" y="115.45454545454544" text-anchor="middle" font-family="monospace" font-size="10">3.77</text>
+<text x="490.0" y="536" text-anchor="middle" font-family="sans-serif" font-size="14">Concurrency</text>
+<text x="22" y="280.0" text-anchor="middle" font-family="sans-serif" font-size="14" transform="rotate(-90 22 280.0)">P99 latency ms</text>
+</svg>

@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1",
+  "campaign_id": "2026-06-01_mldsa-vs-slhdsa-verify-single-vm",
+  "created_at_utc": "2026-06-01T00:14:34.655072+00:00",
+  "package_type": "curated_comparison_package",
+  "topology": "single-node VM",
+  "source_packages": [
+    "reports/campaigns/2026-06-01_mldsa-verify-single-vm",
+    "reports/campaigns/2026-06-01_slhdsa-verify-single-vm"
+  ],
+  "results": {
+    "mldsa_peak": {
+      "concurrency": 8,
+      "verify_per_sec_mean": 73283.06983158398,
+      "p99_ms_mean": 0.7376618232387956
+    },
+    "slhdsa_peak": {
+      "concurrency": 8,
+      "verify_per_sec_mean": 22555.043171941878,
+      "p99_ms_mean": 0.39066457661192544
+    },
+    "peak_throughput_ratio_mldsa_over_slhdsa": 3.2490769036854243
+  },
+  "included_files": [
+    "README.md",
+    "report/mldsa_vs_slhdsa_vm_verify_comparison.md",
+    "summaries/verify_vm_comparison_all_points.csv",
+    "summaries/verify_vm_comparison_common_points.csv",
+    "summaries/verify_vm_comparison_key_ratios.csv",
+    "figures/mldsa_vs_slhdsa_vm_throughput_vs_concurrency.svg",
+    "figures/mldsa_vs_slhdsa_vm_p99_latency_vs_concurrency.svg",
+    "figures/mldsa_vs_slhdsa_vm_p99_latency_vs_throughput.svg",
+    "figures/mldsa_vs_slhdsa_vm_peak_throughput.svg"
+  ],
+  "excluded": [
+    "raw JSON reports",
+    "signature pools",
+    "logs",
+    "local environment snapshots",
+    "helper scripts"
+  ],
+  "sha256_manifest": "manifest.sha256"
+}
