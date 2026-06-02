@@ -1,0 +1,68 @@
+# SERVER VM diagnostics
+
+pqc-fedora-vm-baseline
+Linux pqc-fedora-vm-baseline 7.0.9-105.fc43.x86_64 #1 SMP PREEMPT_DYNAMIC Thu May 21 16:52:10 UTC 2026 x86_64 GNU/Linux
+
+Repo:
+main
+adc7ad530c148438dbd336f6c33e6b9879edc593
+
+Python/pixi:
+Python 3.14.5
+pixi 0.62.2
+
+CPU:
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           48 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  8
+On-line CPU(s) list:                     0-7
+Vendor ID:                               AuthenticAMD
+Model name:                              AMD Ryzen 9 9950X 16-Core Processor
+CPU family:                              26
+Model:                                   68
+Thread(s) per core:                      1
+Core(s) per socket:                      8
+Socket(s):                               1
+Stepping:                                0
+BogoMIPS:                                8599.99
+Flags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm rep_good nopl xtopology cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy svm cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw perfctr_core ssbd perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx_vnni avx512_bf16 clzero xsaveerptr wbnoinvd arat npt lbrv nrip_save tsc_scale vmcb_clean flushbyasid pausefilter pfthreshold v_vmsave_vmload vgif vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid movdiri movdir64b overflow_recov succor fsrm avx512_vp2intersect flush_l1d
+Virtualization:                          AMD-V
+Hypervisor vendor:                       KVM
+Virtualization type:                     full
+L1d cache:                               512 KiB (8 instances)
+L1i cache:                               512 KiB (8 instances)
+L2 cache:                                4 MiB (8 instances)
+L3 cache:                                128 MiB (8 instances)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-7
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Mitigation; IBPB on VMEXIT only
+Vulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; STIBP disabled; PBRSB-eIBRS Not affected; BHI Not affected
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+
+Memory:
+               total        used        free      shared  buff/cache   available
+Mem:            15Gi       756Mi        14Gi       5.1Mi       510Mi        14Gi
+Swap:          8.0Gi          0B       8.0Gi
+
+Listening ports:
+LISTEN 0      5            0.0.0.0:18080      0.0.0.0:*    users:(("python",pid=4046,fd=3))
+
+Firewall ports:

@@ -1,0 +1,17 @@
+{
+  "included_logs": [
+    "server_mldsa_nodelay_baseline.log",
+    "server_slhdsa_nodelay_baseline.log"
+  ],
+  "monitoring_scope": "post-run diagnostics and service/log availability snapshot",
+  "note": "No continuous CPU/memory time series was captured during the benchmark runs.",
+  "topology": {
+    "host": "RebelMachine",
+    "loadgen_ip": "192.168.122.99",
+    "loadgen_vm": "pqc-fedora-vm-loadgen",
+    "port": 18080,
+    "protocol": "HTTP/1.1 keep-alive with TCP_NODELAY",
+    "server_ip": "192.168.122.194",
+    "server_vm": "pqc-fedora-vm-baseline"
+  }
+}

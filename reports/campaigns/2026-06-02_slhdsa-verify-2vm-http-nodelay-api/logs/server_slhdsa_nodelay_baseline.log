@@ -1,0 +1,1 @@
+{"algorithm_requested": "SLH-DSA", "algorithm_resolved": "SPHINCS+-SHA2-128f-simple", "event": "service_start", "host": "0.0.0.0", "mode": "http_keepalive_tcp_nodelay", "pool_size": 1024, "port": 18080, "provider": "real_slhdsa", "tcp_nodelay": true}

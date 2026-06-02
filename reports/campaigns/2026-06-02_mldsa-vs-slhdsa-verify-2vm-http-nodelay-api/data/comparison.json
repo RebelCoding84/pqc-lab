@@ -1,0 +1,70 @@
+{
+  "rows": [
+    {
+      "concurrency": 1,
+      "mldsa_client_p99_ms_mean": 0.27148866666666666,
+      "mldsa_over_slhdsa_throughput": 2.228938889041888,
+      "mldsa_requests_per_sec_mean": 4046.75,
+      "mldsa_server_p99_ms_mean": 0.046856666666666665,
+      "slhdsa_client_p99_ms_mean": 0.6007953333333333,
+      "slhdsa_over_mldsa_client_p99": 2.2129665326729415,
+      "slhdsa_requests_per_sec_mean": 1815.55,
+      "slhdsa_server_p99_ms_mean": 0.35440666666666665
+    },
+    {
+      "concurrency": 8,
+      "mldsa_client_p99_ms_mean": 2.1746386666666666,
+      "mldsa_over_slhdsa_throughput": 0.9857963650760733,
+      "mldsa_requests_per_sec_mean": 6971.683333333333,
+      "mldsa_server_p99_ms_mean": 0.8419203333333334,
+      "slhdsa_client_p99_ms_mean": 1.7330786666666667,
+      "slhdsa_over_mldsa_client_p99": 0.7969501753241458,
+      "slhdsa_requests_per_sec_mean": 7072.133333333333,
+      "slhdsa_server_p99_ms_mean": 0.7498166666666667
+    },
+    {
+      "concurrency": 16,
+      "mldsa_client_p99_ms_mean": 4.831624,
+      "mldsa_over_slhdsa_throughput": 0.9947811222735781,
+      "mldsa_requests_per_sec_mean": 6944.633333333333,
+      "mldsa_server_p99_ms_mean": 2.1297346666666668,
+      "slhdsa_client_p99_ms_mean": 4.277799666666667,
+      "slhdsa_over_mldsa_client_p99": 0.8853751174898268,
+      "slhdsa_requests_per_sec_mean": 6981.066666666667,
+      "slhdsa_server_p99_ms_mean": 1.811639
+    },
+    {
+      "concurrency": 32,
+      "mldsa_client_p99_ms_mean": 10.043608,
+      "mldsa_over_slhdsa_throughput": 1.0075358562776353,
+      "mldsa_requests_per_sec_mean": 7230.883333333333,
+      "mldsa_server_p99_ms_mean": 4.582089666666667,
+      "slhdsa_client_p99_ms_mean": 9.307673000000001,
+      "slhdsa_over_mldsa_client_p99": 0.9267260331147931,
+      "slhdsa_requests_per_sec_mean": 7176.8,
+      "slhdsa_server_p99_ms_mean": 3.9586843333333332
+    },
+    {
+      "concurrency": 64,
+      "mldsa_client_p99_ms_mean": 20.282106,
+      "mldsa_over_slhdsa_throughput": 0.9866246137123861,
+      "mldsa_requests_per_sec_mean": 7231.35,
+      "mldsa_server_p99_ms_mean": 9.241233,
+      "slhdsa_client_p99_ms_mean": 19.340981,
+      "slhdsa_over_mldsa_client_p99": 0.953598260456779,
+      "slhdsa_requests_per_sec_mean": 7329.383333333333,
+      "slhdsa_server_p99_ms_mean": 7.473233333333333
+    },
+    {
+      "concurrency": 128,
+      "mldsa_client_p99_ms_mean": 40.35065566666667,
+      "mldsa_over_slhdsa_throughput": 0.9852890308211766,
+      "mldsa_requests_per_sec_mean": 7358.483333333334,
+      "mldsa_server_p99_ms_mean": 17.739820666666667,
+      "slhdsa_client_p99_ms_mean": 39.60885566666666,
+      "slhdsa_over_mldsa_client_p99": 0.9816161599422831,
+      "slhdsa_requests_per_sec_mean": 7468.349999999999,
+      "slhdsa_server_p99_ms_mean": 15.618701000000001
+    }
+  ]
+}

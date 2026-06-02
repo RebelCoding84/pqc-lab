@@ -1,0 +1,1 @@
+{"algorithm_requested": "ML-DSA", "algorithm_resolved": "ML-DSA-65", "event": "service_start", "host": "0.0.0.0", "mode": "http_keepalive_tcp_nodelay", "pool_size": 1024, "port": 18080, "provider": "real_mldsa", "tcp_nodelay": true}

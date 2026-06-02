@@ -1,0 +1,229 @@
+{
+  "algorithm_family": "ML-DSA",
+  "base_url": "http://192.168.122.194:18080",
+  "client_hostname": "pqc-fedora-vm-loadgen",
+  "client_tcp_nodelay": true,
+  "duration_s": 20.0,
+  "health": {
+    "algorithm_requested": "ML-DSA",
+    "algorithm_resolved": "ML-DSA-65",
+    "hostname": "pqc-fedora-vm-baseline",
+    "pool_size": 1024,
+    "protocol": "HTTP/1.1",
+    "provider": "real_mldsa",
+    "status": "ok",
+    "tcp_nodelay": true
+  },
+  "health_client_ms": 0.888927,
+  "repeat_rows": [
+    {
+      "algorithm_resolved": [
+        "ML-DSA-65"
+      ],
+      "attempted": 147249,
+      "client_latency_ms": {
+        "max": 40.47313,
+        "over_1000ms": 0,
+        "over_100ms": 0,
+        "p50": 8.37131,
+        "p95": 15.791263,
+        "p99": 20.132229,
+        "samples": 147249
+      },
+      "concurrency": 64,
+      "duration_s": 20.0,
+      "errors": 0,
+      "ok": 147249,
+      "repeat": 1,
+      "requests_per_sec": 7362.45,
+      "server_verify_ms": {
+        "max": 27.696651,
+        "p50": 2.069449,
+        "p95": 6.138187,
+        "p99": 9.122047,
+        "samples": 147249
+      },
+      "wall_elapsed_s": 23.203156440000384,
+      "warmup_s": 2.0
+    },
+    {
+      "algorithm_resolved": [
+        "ML-DSA-65"
+      ],
+      "attempted": 142946,
+      "client_latency_ms": {
+        "max": 44.123059,
+        "over_1000ms": 0,
+        "over_100ms": 0,
+        "p50": 8.480653,
+        "p95": 15.849613,
+        "p99": 20.130502,
+        "samples": 142946
+      },
+      "concurrency": 64,
+      "duration_s": 20.0,
+      "errors": 0,
+      "ok": 142946,
+      "repeat": 2,
+      "requests_per_sec": 7147.3,
+      "server_verify_ms": {
+        "max": 33.516914,
+        "p50": 2.083429,
+        "p95": 6.184058,
+        "p99": 9.160744,
+        "samples": 142946
+      },
+      "wall_elapsed_s": 23.092611675999706,
+      "warmup_s": 2.0
+    },
+    {
+      "algorithm_resolved": [
+        "ML-DSA-65"
+      ],
+      "attempted": 143686,
+      "client_latency_ms": {
+        "max": 38.807392,
+        "over_1000ms": 0,
+        "over_100ms": 0,
+        "p50": 8.566123,
+        "p95": 16.042939,
+        "p99": 20.583587,
+        "samples": 143686
+      },
+      "concurrency": 64,
+      "duration_s": 20.0,
+      "errors": 0,
+      "ok": 143686,
+      "repeat": 3,
+      "requests_per_sec": 7184.3,
+      "server_verify_ms": {
+        "max": 24.663443,
+        "p50": 2.21747,
+        "p95": 6.604502,
+        "p99": 9.440908,
+        "samples": 143686
+      },
+      "wall_elapsed_s": 23.13173251399985,
+      "warmup_s": 2.0
+    },
+    {
+      "algorithm_resolved": [
+        "ML-DSA-65"
+      ],
+      "attempted": 146358,
+      "client_latency_ms": {
+        "max": 78.747185,
+        "over_1000ms": 0,
+        "over_100ms": 0,
+        "p50": 16.750253,
+        "p95": 32.196566,
+        "p99": 41.063791,
+        "samples": 146358
+      },
+      "concurrency": 128,
+      "duration_s": 20.0,
+      "errors": 0,
+      "ok": 146358,
+      "repeat": 1,
+      "requests_per_sec": 7317.9,
+      "server_verify_ms": {
+        "max": 55.620293,
+        "p50": 4.209357,
+        "p95": 12.7217,
+        "p99": 18.950536,
+        "samples": 146358
+      },
+      "wall_elapsed_s": 24.181463613999767,
+      "warmup_s": 2.0
+    },
+    {
+      "algorithm_resolved": [
+        "ML-DSA-65"
+      ],
+      "attempted": 151044,
+      "client_latency_ms": {
+        "max": 83.718138,
+        "over_1000ms": 0,
+        "over_100ms": 0,
+        "p50": 16.37496,
+        "p95": 30.593542,
+        "p99": 38.601161,
+        "samples": 151044
+      },
+      "concurrency": 128,
+      "duration_s": 20.0,
+      "errors": 0,
+      "ok": 151044,
+      "repeat": 2,
+      "requests_per_sec": 7552.2,
+      "server_verify_ms": {
+        "max": 50.253456,
+        "p50": 3.41834,
+        "p95": 9.607273,
+        "p99": 15.441223,
+        "samples": 151044
+      },
+      "wall_elapsed_s": 24.16209292700023,
+      "warmup_s": 2.0
+    },
+    {
+      "algorithm_resolved": [
+        "ML-DSA-65"
+      ],
+      "attempted": 144107,
+      "client_latency_ms": {
+        "max": 78.804994,
+        "over_1000ms": 0,
+        "over_100ms": 0,
+        "p50": 17.084907,
+        "p95": 32.381248,
+        "p99": 41.387015,
+        "samples": 144107
+      },
+      "concurrency": 128,
+      "duration_s": 20.0,
+      "errors": 0,
+      "ok": 144107,
+      "repeat": 3,
+      "requests_per_sec": 7205.35,
+      "server_verify_ms": {
+        "max": 49.411178,
+        "p50": 4.219217,
+        "p95": 12.982843,
+        "p99": 18.827703,
+        "samples": 144107
+      },
+      "wall_elapsed_s": 23.373964962000173,
+      "warmup_s": 2.0
+    }
+  ],
+  "repeats": 3,
+  "summary_rows": [
+    {
+      "client_over_1000ms_total": 0,
+      "client_over_100ms_total": 0,
+      "client_p99_ms_mean": 20.282106,
+      "concurrency": 64,
+      "errors_total": 0,
+      "ok_total": 433881,
+      "repeats": 3,
+      "requests_per_sec_mean": 7231.35,
+      "requests_per_sec_stdev": 115.03328866028282,
+      "server_p99_ms_mean": 9.241233
+    },
+    {
+      "client_over_1000ms_total": 0,
+      "client_over_100ms_total": 0,
+      "client_p99_ms_mean": 40.35065566666667,
+      "concurrency": 128,
+      "errors_total": 0,
+      "ok_total": 441509,
+      "repeats": 3,
+      "requests_per_sec_mean": 7358.483333333334,
+      "requests_per_sec_stdev": 176.95051803635178,
+      "server_p99_ms_mean": 17.739820666666667
+    }
+  ],
+  "test_type": "2vm_http_verify_tcp_nodelay_duration_baseline",
+  "warmup_s": 2.0
+}
