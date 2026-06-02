@@ -1,0 +1,73 @@
+{
+  "campaign": "2026-06-02_mldsa-vs-slhdsa-verify-2vm-http-nodelay-api",
+  "file_count": 13,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "645908cf114b07d6d29907e166983bd42e7d9e91ec6d2aeabe94c6461d068c6c",
+      "size_bytes": 1331
+    },
+    {
+      "path": "data/comparison.json",
+      "sha256": "34f9a056ff1b6b620f975e0ff63841c915401b40a4df33a7fba4ee0906fa07f6",
+      "size_bytes": 2820
+    },
+    {
+      "path": "environment/host_libvirt_diagnostics.md",
+      "sha256": "27b7b637c5b38fd51ccd1799b79e104e35007b7d06297434f17a9f25739ad7e6",
+      "size_bytes": 2548
+    },
+    {
+      "path": "environment/loadgen_vm_diagnostics.md",
+      "sha256": "53f6c8e12951e69c7dc2323c989ec44066b8ea4e9af8d42785dc8169284b6e84",
+      "size_bytes": 3988
+    },
+    {
+      "path": "environment/server_vm_diagnostics.md",
+      "sha256": "dba6e0c7b34329ff028947e15bdda150d3d810253c7ca175cbb1481b308af239",
+      "size_bytes": 4117
+    },
+    {
+      "path": "figures/mldsa_vs_slhdsa_2vm_client_p99_vs_concurrency.svg",
+      "sha256": "d2dc1fd6428799eedef607dab021c920ac6f9f17b3bce0d895d7dbab70125cd7",
+      "size_bytes": 3798
+    },
+    {
+      "path": "figures/mldsa_vs_slhdsa_2vm_server_p99_vs_concurrency.svg",
+      "sha256": "c63278dbec6fc89b87a3a012b46bb1ada230831134f26c2f5291667f431a6fa4",
+      "size_bytes": 3803
+    },
+    {
+      "path": "figures/mldsa_vs_slhdsa_2vm_throughput_vs_concurrency.svg",
+      "sha256": "19e237c29b51b91cdb5156d91c6f14247ab7652f7f7a61e6d5f5622de6d8504e",
+      "size_bytes": 3797
+    },
+    {
+      "path": "logs/server_mldsa_nodelay_baseline.log",
+      "sha256": "23c6635b65796d33a96ce2f6b3013db3ea4d77a72af0d8a2dd108a0c99aa6d5a",
+      "size_bytes": 233
+    },
+    {
+      "path": "logs/server_slhdsa_nodelay_baseline.log",
+      "sha256": "d1c7661a464cdebfcf6118f1e9932746bbd391606e294fde6527c0fb9ee2cc71",
+      "size_bytes": 251
+    },
+    {
+      "path": "monitoring/post_run_monitoring_summary.json",
+      "sha256": "b639e79dea30a9b588774b67a3a7a5ea130e541af5118ccd7bb706e3fb5e0c9c",
+      "size_bytes": 566
+    },
+    {
+      "path": "report/mldsa_vs_slhdsa_2vm_http_nodelay_comparison.md",
+      "sha256": "645908cf114b07d6d29907e166983bd42e7d9e91ec6d2aeabe94c6461d068c6c",
+      "size_bytes": 1331
+    },
+    {
+      "path": "summaries/mldsa_vs_slhdsa_2vm_http_nodelay_comparison.csv",
+      "sha256": "c051f39c77f39d83da242e2c773ea9e663107085884431749be75e8fb43e5420",
+      "size_bytes": 1051
+    }
+  ],
+  "generated_by": "/tmp/package_2vm_http_nodelay_api.py",
+  "schema_version": 1
+}

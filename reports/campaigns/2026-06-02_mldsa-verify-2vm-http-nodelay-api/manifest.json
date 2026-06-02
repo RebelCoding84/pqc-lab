@@ -1,0 +1,78 @@
+{
+  "campaign": "2026-06-02_mldsa-verify-2vm-http-nodelay-api",
+  "file_count": 14,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "f3d6c527ee5bf5c358916f7b62307fd1157361c34c008af150e08a43942955ef",
+      "size_bytes": 1316
+    },
+    {
+      "path": "data/mldsa_baseline_c1_c32.json",
+      "sha256": "189608b977aaf750016fd77895118436a7bb778bec547880472b2d0dad529606",
+      "size_bytes": 10312
+    },
+    {
+      "path": "data/mldsa_extension_c64_c128.json",
+      "sha256": "64c346bc26d3e87efef7f197b6aa769328db0b892b00da7f9a7d36e650502a3f",
+      "size_bytes": 5492
+    },
+    {
+      "path": "environment/host_libvirt_diagnostics.md",
+      "sha256": "27b7b637c5b38fd51ccd1799b79e104e35007b7d06297434f17a9f25739ad7e6",
+      "size_bytes": 2548
+    },
+    {
+      "path": "environment/loadgen_vm_diagnostics.md",
+      "sha256": "53f6c8e12951e69c7dc2323c989ec44066b8ea4e9af8d42785dc8169284b6e84",
+      "size_bytes": 3988
+    },
+    {
+      "path": "environment/server_vm_diagnostics.md",
+      "sha256": "dba6e0c7b34329ff028947e15bdda150d3d810253c7ca175cbb1481b308af239",
+      "size_bytes": 4117
+    },
+    {
+      "path": "figures/mldsa_2vm_client_p99_vs_concurrency.svg",
+      "sha256": "50f547f2794e9c463c8dccf595753af619942f07492c22cb4bb083790e06791e",
+      "size_bytes": 3181
+    },
+    {
+      "path": "figures/mldsa_2vm_server_p99_vs_concurrency.svg",
+      "sha256": "10e80f3d3f4ce18947f2fd76e6f04a15148d6fe3f72c6cf4ec17c2bceba2cc4d",
+      "size_bytes": 3186
+    },
+    {
+      "path": "figures/mldsa_2vm_throughput_vs_concurrency.svg",
+      "sha256": "e28a78b2184be25d9248cbba2f439e77bee59ed53bf0bc6679b6305495651bc6",
+      "size_bytes": 3182
+    },
+    {
+      "path": "logs/server_mldsa_nodelay_baseline.log",
+      "sha256": "23c6635b65796d33a96ce2f6b3013db3ea4d77a72af0d8a2dd108a0c99aa6d5a",
+      "size_bytes": 233
+    },
+    {
+      "path": "logs/server_slhdsa_nodelay_baseline.log",
+      "sha256": "d1c7661a464cdebfcf6118f1e9932746bbd391606e294fde6527c0fb9ee2cc71",
+      "size_bytes": 251
+    },
+    {
+      "path": "monitoring/post_run_monitoring_summary.json",
+      "sha256": "b639e79dea30a9b588774b67a3a7a5ea130e541af5118ccd7bb706e3fb5e0c9c",
+      "size_bytes": 566
+    },
+    {
+      "path": "report/mldsa_2vm_http_nodelay_report.md",
+      "sha256": "f3d6c527ee5bf5c358916f7b62307fd1157361c34c008af150e08a43942955ef",
+      "size_bytes": 1316
+    },
+    {
+      "path": "summaries/mldsa_2vm_http_nodelay_summary.csv",
+      "sha256": "0164c0939157c46d653bb410e80aa24d8112a440bffd5ede48dae3ddc6112c31",
+      "size_bytes": 678
+    }
+  ],
+  "generated_by": "/tmp/package_2vm_http_nodelay_api.py",
+  "schema_version": 1
+}
