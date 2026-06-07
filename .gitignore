@@ -27,6 +27,8 @@ htmlcov/
 reports/*
 !reports/capacity/
 !reports/capacity/**
+!reports/campaigns/
+!reports/campaigns/**
 
 .vendor/
 fixtures/signatures/*.jsonl
