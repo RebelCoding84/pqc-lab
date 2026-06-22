@@ -1,0 +1,61 @@
+Connecting to 192.168.122.194
+depth=0 CN=pqc-gateway.local
+verify error:num=18:self-signed certificate
+verify return:1
+depth=0 CN=pqc-gateway.local
+verify return:1
+CONNECTED(00000003)
+---
+Certificate chain
+ 0 s:CN=pqc-gateway.local
+   i:CN=pqc-gateway.local
+   a:PKEY: RSA, 3072 (bit); sigalg: sha256WithRSAEncryption
+   v:NotBefore: Jun 22 04:56:02 2026 GMT; NotAfter: Jun 29 04:56:02 2026 GMT
+---
+Server certificate
+-----BEGIN CERTIFICATE-----
+MIIEGTCCAoGgAwIBAgIUJOzkBclWp7KJ44kv7R/f/uFEQH0wDQYJKoZIhvcNAQEL
+BQAwHDEaMBgGA1UEAwwRcHFjLWdhdGV3YXkubG9jYWwwHhcNMjYwNjIyMDQ1NjAy
+WhcNMjYwNjI5MDQ1NjAyWjAcMRowGAYDVQQDDBFwcWMtZ2F0ZXdheS5sb2NhbDCC
+AaIwDQYJKoZIhvcNAQEBBQADggGPADCCAYoCggGBANgvaHx0ucAsPxohbpfNY5gN
+SB6RXQQXes2s4Wxq5X0WZM56Ubf79/3XUiRzFob0cc79wv4TRL0t2Ov+1N6cqLs+
+mse4nvsWzlM+Xc4drr0PrBtJSuY2aUlXHY7zStVt/vZm/9NKZsDb2MrSogLassDI
+MWUco2dWkcJ84HbSyTXfQopkGHnX3nvvZhqCSgUwUG9VvTxzSacUCGO1j1CIDz8Y
+bkiKsc5SO9v+uacWJBelONxxQ//7epC0LglJhzz9I4v2pEcsLRPgmmg3NPjnfVAR
+O9sMHVO5jGZ2tiHn32D1bC/+rbJehQlvvvn4I7vOwN2h7xYCLGNO11rgdjkcvosK
+7naWIL+8ST3QfDhayqTiAHogmM6bIUz2FF9UFm3u/JmKUWlweA/bw1w+/dkrBDL/
+MPmXkbJPG2BnppOrNFRKvHpT+wQwMX+v+Y63vC5IWCXhGlk+gP9awvXKiQw4UU2K
+IHkpmU7e+bStvCAA6KBB7RHGXYI5KoQr1KMxOUsjeQIDAQABo1MwUTAdBgNVHQ4E
+FgQUfCiDKLKMewwUpU+ZXFzdfOL1YpwwHwYDVR0jBBgwFoAUfCiDKLKMewwUpU+Z
+XFzdfOL1YpwwDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAYEAgfzp
+PMbQLRyZ2TOn2nFFwBSJ+VDm02Xu0SCD/EzVK2IEN/7SykimBtEzJRikxM5mNBfX
+4N1nCZqJp4Xk6yF864aNWjHj9u+Cbxa+HVcikuNzjeKNe637TcHFW6zJpFmOW18q
+FHKvpX8VeH/9ZZHIZ7b8+R3fIh9GJY4GbSC1T4mq/XeL2FItjjwft4PlrktFDQNA
+dc5svrjgZBVGP3MhpzcZY8d03KVo4sIvObpNCZ+ZPAmNmu8nQGpGoy1CxGFd9lT8
+b+e7jwu/tVMoUf7SDGEgPN3e/D9nu3dZbxTAF7xwQdKNwN2NNLrsxvZug6+AV1DJ
+kVKWNxJUWIDasQZclnC5c8r8bBvRKxRm5xnJ0VutNNJLxrBoy3urbzGk9puczBSy
+erkUdTv1Ryus/C1mI/pgJEwvGSIHoVmcLK8MapytsKLe1RQ9mn+NJSLkszCKrKQq
+6JHLvdEZzl43Rh6D+EbCNstohBYwxDb1sa/PJ294kACwn4ZhpEgNCzcjI/Ul
+-----END CERTIFICATE-----
+subject=CN=pqc-gateway.local
+issuer=CN=pqc-gateway.local
+---
+No client certificate CA names sent
+Peer signing digest: SHA256
+Peer signature type: rsa_pss_rsae_sha256
+Negotiated TLS1.3 group: X25519MLKEM768
+---
+SSL handshake has read 2825 bytes and written 1498 bytes
+Verification error: self-signed certificate
+---
+New, TLSv1.3, Cipher is TLS_AES_256_GCM_SHA384
+Protocol: TLSv1.3
+Server public key is 3072 bit
+This TLS version forbids renegotiation.
+Compression: NONE
+Expansion: NONE
+No ALPN negotiated
+Early data was not sent
+Verify return code: 18 (self-signed certificate)
+---
+DONE
