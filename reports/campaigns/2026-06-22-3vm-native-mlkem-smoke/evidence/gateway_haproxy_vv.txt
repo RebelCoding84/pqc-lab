@@ -1,0 +1,59 @@
+HAProxy version 3.0.23-44b4517fc-2.fc43 2026/05/11 - https://haproxy.org/
+Status: long-term supported branch - will stop receiving fixes around Q2 2029.
+Known bugs: http://www.haproxy.org/bugs/bugs-3.0.23.html
+Running on: Linux 7.0.9-105.fc43.x86_64 #1 SMP PREEMPT_DYNAMIC Thu May 21 16:52:10 UTC 2026 x86_64
+Build options :
+  TARGET  = linux-glibc
+  CC      = gcc
+  CFLAGS  = -fwrapv -fvect-cost-model=very-cheap -O2 -flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-U_FORTIFY_SOURCE,-D_FORTIFY_SOURCE=3 -Wp,-D_GLIBCXX_ASSERTIONS -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -fstack-protector-strong -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -march=x86-64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -mtls-dialect=gnu2 -fno-omit-frame-pointer -mno-omit-leaf-frame-pointer -DMAX_SESS_STKCTR=12
+  OPTIONS = USE_OPENSSL=1 USE_LUA=1 USE_PROMEX=1 USE_PCRE2=1
+  DEBUG   = 
+
+Feature list : -51DEGREES +ACCEPT4 +BACKTRACE -CLOSEFROM +CPU_AFFINITY +CRYPT_H -DEVICEATLAS +DL -ENGINE +EPOLL -EVPORTS +GETADDRINFO -KQUEUE -LIBATOMIC +LIBCRYPT +LINUX_CAP +LINUX_SPLICE +LINUX_TPROXY +LUA +MATH -MEMORY_PROFILING +NETFILTER +NS -OBSOLETE_LINKER +OPENSSL -OPENSSL_AWSLC -OPENSSL_WOLFSSL -OT -PCRE +PCRE2 -PCRE2_JIT -PCRE_JIT +POLL +PRCTL -PROCCTL +PROMEX -PTHREAD_EMULATION -QUIC -QUIC_OPENSSL_COMPAT +RT +SHM_OPEN +SLZ +SSL -STATIC_PCRE -STATIC_PCRE2 +SYSTEMD +TFO +THREAD +THREAD_DUMP +TPROXY -WURFL -ZLIB
+
+Default settings :
+  bufsize = 16384, maxrewrite = 1024, maxpollevents = 200
+
+Built with multi-threading support (MAX_TGROUPS=16, MAX_THREADS=256, default=8).
+Built with OpenSSL version : OpenSSL 3.5.4 30 Sep 2025
+Running on OpenSSL version : OpenSSL 3.5.4 30 Sep 2025
+OpenSSL library supports TLS extensions : yes
+OpenSSL library supports SNI : yes
+OpenSSL library supports : TLSv1.0 TLSv1.1 TLSv1.2 TLSv1.3
+OpenSSL providers loaded : default
+Built with Lua version : Lua 5.4.8
+Built with the Prometheus exporter as a service
+Built with network namespace support.
+Built with libslz for stateless compression.
+Compression algorithms supported : identity("identity"), deflate("deflate"), raw-deflate("deflate"), gzip("gzip")
+Built with transparent proxy support using: IP_TRANSPARENT IPV6_TRANSPARENT IP_FREEBIND
+Built with PCRE2 version : 10.47 2025-10-21
+PCRE2 library supports JIT : no (USE_PCRE2_JIT not set)
+Encrypted password support via crypt(3): yes
+Built with gcc compiler version 15.2.1 20260123 (Red Hat 15.2.1-7)
+
+Available polling systems :
+      epoll : pref=300,  test result OK
+       poll : pref=200,  test result OK
+     select : pref=150,  test result OK
+Total: 3 (3 usable), will use epoll.
+
+Available multiplexer protocols :
+(protocols marked as <default> cannot be specified using 'proto' keyword)
+         h2 : mode=HTTP  side=FE|BE  mux=H2    flags=HTX|HOL_RISK|NO_UPG
+         h1 : mode=HTTP  side=FE|BE  mux=H1    flags=HTX|NO_UPG
+  <default> : mode=HTTP  side=FE|BE  mux=H1    flags=HTX
+       fcgi : mode=HTTP  side=BE     mux=FCGI  flags=HTX|HOL_RISK|NO_UPG
+       none : mode=TCP   side=FE|BE  mux=PASS  flags=NO_UPG
+  <default> : mode=TCP   side=FE|BE  mux=PASS  flags=
+
+Available services : prometheus-exporter
+Available filters :
+	[BWLIM] bwlim-in
+	[BWLIM] bwlim-out
+	[CACHE] cache
+	[COMP] compression
+	[FCGI] fcgi-app
+	[SPOE] spoe
+	[TRACE] trace
+

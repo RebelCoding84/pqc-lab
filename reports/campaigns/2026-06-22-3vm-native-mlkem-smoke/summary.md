@@ -41,4 +41,32 @@ The self-signed certificate verification warning is expected in this smoke test 
 
 This smoke test proves the LOADGEN -> GATEWAY TLS 1.3 hybrid key exchange path.
 
-It does not yet prove full proxying through GATEWAY -> BACKEND. The backend delay service is already running separately on BACKEND port `18081`, and GATEWAY/LOADGEN connectivity to it has been verified.
+At this initial direct OpenSSL smoke stage, full proxying through GATEWAY -> BACKEND was not yet proven. The later HAProxy full proxy smoke section below verifies the complete LOADGEN -> GATEWAY -> BACKEND path.
+
+## HAProxy full proxy smoke
+
+PASS.
+
+A full 3VM proxy smoke test was completed after the initial direct OpenSSL smoke test.
+
+Verified path:
+
+    LOADGEN -> HAProxy/GATEWAY TLS 1.3 X25519MLKEM768 -> BACKEND /delay/50 -> HTTP 200 OK
+
+Evidence confirms:
+
+- TLS 1.3 negotiated group: `X25519MLKEM768`
+- TLS protocol: `TLSv1.3`
+- Cipher suite: `TLS_AES_256_GCM_SHA384`
+- ALPN protocol: `http/1.1`
+- HAProxy frontend: `pqc_tls_frontend`
+- HAProxy backend: `backend_delay/backend1`
+- Backend endpoint: `/delay/50`
+- Backend response: `HTTP/1.1 200 OK`
+- Backend JSON response included `delay_ms: 50`
+
+The HAProxy log shows successful forwarding from LOADGEN to BACKEND through the TLS frontend:
+
+    pqc_tls_frontend~ backend_delay/backend1 ... 200 ... "GET /delay/50 HTTP/1.1"
+
+This proves that the gateway proxy path works with OpenSSL-native hybrid ML-KEM TLS 1.3 in front of the backend delay service.
