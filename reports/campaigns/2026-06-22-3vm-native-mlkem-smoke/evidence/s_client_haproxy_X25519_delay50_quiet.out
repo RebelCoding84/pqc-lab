@@ -1,0 +1,14 @@
+Connecting to 192.168.122.194
+depth=0 CN=pqc-gateway.local
+verify error:num=18:self-signed certificate
+verify return:1
+depth=0 CN=pqc-gateway.local
+verify return:1
+HTTP/1.1 200 OK
+server: BaseHTTP/0.6 Python/3.14.5
+date: Mon, 22 Jun 2026 06:25:01 GMT
+content-type: application/json
+content-length: 98
+connection: close
+
+{"ok":true,"role":"backend","hostname":"pqc-fedora-vm-backend","delay_ms":50,"elapsed_ms":50.103}

@@ -70,3 +70,49 @@ The HAProxy log shows successful forwarding from LOADGEN to BACKEND through the 
     pqc_tls_frontend~ backend_delay/backend1 ... 200 ... "GET /delay/50 HTTP/1.1"
 
 This proves that the gateway proxy path works with OpenSSL-native hybrid ML-KEM TLS 1.3 in front of the backend delay service.
+
+## Classical X25519 baseline smoke
+
+PASS.
+
+A matching classical TLS 1.3 baseline smoke was completed with HAProxy configured for `X25519`.
+
+Verified path:
+
+    LOADGEN -> HAProxy/GATEWAY TLS 1.3 X25519 -> BACKEND /delay/50 -> HTTP 200 OK
+
+Evidence confirms:
+
+- TLS protocol: `TLSv1.3`
+- Classical key exchange evidence: `Peer Temp Key: X25519, 253 bits`
+- Cipher suite: `TLS_AES_256_GCM_SHA384`
+- ALPN protocol: `http/1.1`
+- Backend endpoint: `/delay/50`
+- Backend response: `HTTP/1.1 200 OK`
+- Backend JSON response included `delay_ms: 50`
+
+## Sequential timing calibration
+
+PASS.
+
+A small sequential curl calibration was run for both `X25519` and `X25519MLKEM768`.
+
+This was not a capacity or deadline benchmark. It was a sanity check to verify that the measurement path behaves logically before larger load tests.
+
+Summary from 10 requests per delay value:
+
+    profile,delay_ms,count,http_codes,appconnect_avg_ms,total_avg_ms
+    X25519,0,10,['200'],2.741,3.579
+    X25519,10,10,['200'],2.548,13.594
+    X25519,50,10,['200'],2.883,54.207
+    X25519MLKEM768,0,10,['200'],2.825,3.646
+    X25519MLKEM768,10,10,['200'],2.689,13.673
+    X25519MLKEM768,50,10,['200'],3.154,54.513
+
+Observed hybrid-minus-classical deltas in this small sequential smoke:
+
+    delay=0 appconnect_delta=0.084 ms total_delta=0.067 ms
+    delay=10 appconnect_delta=0.141 ms total_delta=0.080 ms
+    delay=50 appconnect_delta=0.271 ms total_delta=0.306 ms
+
+Interpretation: all requests returned HTTP 200, backend delay was reflected correctly in total request time, and the hybrid ML-KEM path showed only a small additional sequential handshake/total-time cost in this smoke check.
