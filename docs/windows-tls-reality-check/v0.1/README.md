@@ -1,6 +1,7 @@
 # Windows TLS Reality Check v0.1 — measurement report
 
-**Status:** Draft research release; the original PCAPNG evidence remains private.  
+**Status:** Published research dataset v0.1; offline preliminary packet-level validation completed, with original PCAPNG evidence retained privately.  
+**Versioned release:** [windows-tls-reality-check-v0.1](https://github.com/RebelCoding84/pqc-lab/releases/tag/windows-tls-reality-check-v0.1).  
 **Protocol:** v0.1 FROZEN, drafted 2026-10-20 and registered 2026-11-16.  
 **Measurements:** November 2026.  
 **Source repository (offline):** `win-tls-check`, commit `7e20117f3b80564b533204a360febd798dacd763`.
