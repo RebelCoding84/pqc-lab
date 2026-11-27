@@ -2,6 +2,13 @@
 
 This repository provides a CPU-only, reproducible baseline environment for an EU-style PQC testing lab. The baseline stays green in CI even when optional PQC providers are not installed.
 
+## Research Publications
+
+- **[Windows TLS Reality Check v0.1](docs/windows-tls-reality-check/v0.1/README.md)** (November 2026) — controlled Windows 11 TLS 1.3 experiment comparing Schannel-based clients with Edge, Chrome and Firefox; 48 preregistered measurements plus 12 supplementary browser measurements. [Versioned GitHub Release](https://github.com/RebelCoding84/pqc-lab/releases/tag/windows-tls-reality-check-v0.1).
+- **PQC Capacity Baseline** — [ML-KEM-768 and hybrid Frodo/HQC v0.1.0](https://github.com/RebelCoding84/pqc-lab/releases/tag/v0.1.0-capacity-baseline-2026-02) and [Classic McEliece v0.1.1](https://github.com/RebelCoding84/pqc-lab/releases/tag/v0.1.1-mceliece-complete).
+
+The Windows TLS release includes reviewed derivative results and automated consistency checks. Original packet captures remain in a private evidence archive; GitHub Actions does not independently rerun the Windows experiment.
+
 ## Quickstart
 
 1) Install Pixi: https://pixi.sh
