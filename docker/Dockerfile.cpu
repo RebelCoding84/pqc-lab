@@ -16,6 +16,9 @@ COPY pixi.toml pixi.lock pyproject.toml README.md LICENSE ./
 COPY src ./src
 COPY examples ./examples
 COPY tests ./tests
+# Include the publication validator and its CSV fixture in the CPU test image.
+COPY scripts/validate_windows_tls_dataset.py ./scripts/validate_windows_tls_dataset.py
+COPY docs/windows-tls-reality-check/v0.1/results.csv ./docs/windows-tls-reality-check/v0.1/results.csv
 COPY profiles ./profiles
 COPY fixtures ./fixtures
 
