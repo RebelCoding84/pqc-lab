@@ -1,0 +1,33 @@
+name: Windows TLS Evidence Dataset
+
+on:
+  push:
+    paths:
+      - 'docs/windows-tls-reality-check/**'
+      - 'scripts/validate_windows_tls_dataset.py'
+      - 'tests/test_windows_tls_publication.py'
+      - '.github/workflows/windows-tls-evidence.yml'
+  pull_request:
+    paths:
+      - 'docs/windows-tls-reality-check/**'
+      - 'scripts/validate_windows_tls_dataset.py'
+      - 'tests/test_windows_tls_publication.py'
+      - '.github/workflows/windows-tls-evidence.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-published-dataset:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout (pinned)
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Validate released CSV
+        run: python3 scripts/validate_windows_tls_dataset.py
+      - name: Verify regression tests
+        run: python3 -m unittest discover -s tests -p 'test_windows_tls_publication.py' -v
